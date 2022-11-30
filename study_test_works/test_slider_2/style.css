@@ -1,0 +1,37 @@
+#slider {
+    background-color: rgb(239, 167, 179);
+    width: 500px;
+    border: 2px solid black;
+    height: 300px;
+    margin: 100px 50px;
+    /* text-align: center; */
+    line-height: 100px;
+    position: fixed;
+  }
+  #left {
+    color: black;
+    font-size: 30px;
+    margin-top: 220px;
+    position: absolute;
+    
+  }
+  #right {
+    color: black;
+    font-size: 30px;
+    margin-left: 575px;
+    margin-top: 220px;
+    position: absolute;
+    
+  }
+  #right:hover {
+    transform: scale(0.90);
+  }
+  #left:hover {
+    transform: scale(0.90);
+  }
+  #slider img {
+    width: 500px;  
+    height: 300px;   
+    position: fixed;
+        
+  }

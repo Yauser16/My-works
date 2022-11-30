@@ -1,0 +1,8 @@
+.right {
+	border: 2px solid green;
+	border-radius: 50%;
+}
+.wrong {
+	border: 2px solid red;
+	border-radius: 50%;
+}

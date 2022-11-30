@@ -1,0 +1,11 @@
+.right {
+	border: 2px solid rgb(10, 82, 22);
+	background-color: rgb(149, 236, 149);
+	
+}
+.wrong {
+	border: 2px solid rgb(144, 6, 6);
+	background-color: rgb(233, 157, 157);
+	
+	
+}
