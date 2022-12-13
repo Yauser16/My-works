@@ -1,0 +1,262 @@
+/* font-family: 'Merienda', cursive; */
+
+/***
+    The new CSS reset - version 1.6.0 (last updated 29.4.2022)
+    GitHub page: https://github.com/elad2412/the-new-css-reset
+***/
+
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+ */
+ *:where(:not(html, iframe, canvas, img, svg, video):not(svg *, symbol *)) {
+    all: unset;
+    display: revert;
+  }
+  
+  /* Preferred box-sizing value */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+  /* Reapply the pointer cursor for anchor tags */
+  a, button {
+    cursor: revert;
+  }
+  
+  /* Remove list styles (bullets/numbers) */
+  ol, ul, menu {
+    list-style: none;
+  }
+  
+  /* For images to not be able to exceed their container */
+  img {
+    max-width: 100%;
+  }
+  
+  /* removes spacing between cells in tables */
+  table {
+    border-collapse: collapse;
+  }
+  
+  /* revert the 'white-space' property for textarea elements on Safari */
+  textarea {
+    white-space: revert;
+  }
+  
+  /* minimum style to allow to style meter element */
+  meter {
+    -webkit-appearance: revert;
+    appearance: revert;
+  }
+  
+  /* reset default text opacity of input placeholder */
+  ::placeholder {
+    color: unset;
+  }
+  
+  /* fix the feature of 'hidden' attribute.
+   display:revert; revert to element instead of attribute */
+  :where([hidden]) {
+    display: none;
+  }
+  
+  /* revert for bug in Chromium browsers
+   - fix for the content editable attribute will work properly. */
+  :where([contenteditable]) {
+    -moz-user-modify: read-write;
+    -webkit-user-modify: read-write;
+    overflow-wrap: break-word;
+    -webkit-line-break: after-white-space;
+  }
+  
+  /* apply back the draggable feature - exist only in Chromium and Safari */
+  :where([draggable="true"]) {
+    -webkit-user-drag: element;
+  }
+  /* Конец сброса значений браузера */
+ 
+  
+  :root {
+    --white-color: #ffffff;
+    --black-color: black;
+  }
+  body {
+    font-family: 'Merienda', cursive;
+    font-weight: 400;
+    width: 1440px;
+  }
+  
+.header {    
+    width: inherit;
+    height: 640px;
+    margin: 0 auto;
+    background-image: url(./dist/Main\ bg.jpg);
+    position: absolute;
+    margin-top: -5px;
+        
+}
+
+.navigate {
+  width:355px;
+  height: 40px;
+  display: flex;  
+  position: absolute;
+  color: var(--white-color);
+  margin-top: 38px;
+  margin-left: 148px;
+  justify-content: space-between; 
+}
+.menu {
+  display: table;
+}
+.menu__item {
+  /*   display: flex; */
+    font-size: 12px;
+    display: table-cell;
+    vertical-align: bottom;    
+}
+.main { 
+  width: inherit;
+  font-style: normal;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 58px;
+  color: var(--white-color);
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  margin-top: 192px;
+}
+.beans {
+  margin: 5px auto 5px auto;
+  width: 200px;
+  height: 30px;  
+}
+/* ul {
+  width:355px;
+  height: 40px;
+  display: flex;  
+  
+  color: var(--white-color);
+  margin-left: 60px;
+  justify-content: space-between; 
+
+}
+li {
+  display: flex; 
+
+} */
+
+.beans-logo {
+  
+}
+.line {
+}
+.coffee {
+}
+main {
+  height: 520px;
+  margin-top: 635px;
+  position: absolute;
+  width: 100%;
+  
+}
+.main-text {
+  text-align: center;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 35px;
+  color: #ffffff;
+  margin-top: 35px;
+}
+.main-text-two {
+  text-align: center;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 35px;
+  color: #ffffff;
+  margin-top: 12px;
+}
+.more {
+  width: 120px;
+  height: 30px;
+  border: #ffffff solid 1px;;
+  color: #ffffff;
+  margin: 18px auto 0 auto;
+  text-align: center;
+  font-size: 14px;
+}
+.more p { 
+  text-align: center;  
+  font-size: 14px;
+  transform: translate(0, 20%)
+}
+.about {
+  margin-top: 90px;
+  position: relative;
+  text-align: center;
+}
+.about-us {
+  color: black;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 35px;  
+}
+main div img {
+  margin-top: 11px;
+  /* align-items: center; */
+}
+.about-text-p {
+  color: black;  
+  height: 230px; 
+  width: 590px; 
+  /* position: absolute; */
+  text-align: center;
+  margin: 42px auto 0 auto;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+}
+.our-best {
+  position: absolute;
+  width: inherit;
+  height: 495px;
+  margin-top: 1165px;
+  /* text-align: center; */
+  border: 1px solid black;
+  background-image: url(./dist/Mask\ Group-2.jpg)
+
+}
+.our-best h3 {
+  color: --black-color;
+  margin-top: 80px;
+  text-align: center;
+}
+.footer{
+  width: 330px;
+  height: 40px;
+  display: flex;  
+  position: absolute;
+  color: var(--black-color);  
+  justify-content: space-between;
+  margin-top: 1700px; 
+  
+}
+.menu_ {
+  display: table;
+}
+.menu-foot {
+  /*   display: flex; */
+    font-size: 12px;
+    display: table-cell;
+    vertical-align: bottom;    
+}
+.best-coffee {
+}
+
