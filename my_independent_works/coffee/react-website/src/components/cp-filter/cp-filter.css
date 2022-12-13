@@ -1,0 +1,69 @@
+.filter__menu {
+    max-width: 720px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    margin-top: 60px;
+    padding-left: 10px;
+}
+
+.sort {
+    width: 75px;
+    height: 30px;
+    background: #FFFFFF;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 4px 0px 0px 4px;
+    display: flex;
+    margin-right: 5px;
+   /*  transform: rotate(180deg); */
+}
+.sortir {
+    display: flex;
+    width: 284px;
+    height: 30px;
+    margin-left: 20px;
+}
+.sortir button {
+    width: 180px;
+    height: 30px;
+    background: #FFFFFF;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 4px 0px 0px 4px;
+    display: flex;
+}
+.filter {
+    display: flex;
+    width: 326px;
+    height: 30px;
+    
+}
+.here {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    color: rgba(0, 0, 0, 0.5);
+    margin: auto;
+
+}
+.look {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 5px;
+    margin-right: 20px;
+}
+.sort p {
+    margin: auto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+}
+.btn-light {
+border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.btn-outline-light {
+border: none;
+}

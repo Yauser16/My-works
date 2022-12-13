@@ -1,0 +1,58 @@
+
+.wr {
+    overflow: hidden;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+.our-best {
+    max-width: 802px;
+    height: 590px;  
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;     
+    background-color: #fff;    
+    display: flex;
+    justify-content: space-between;   
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.stock {
+    width: 220px;
+    height: 260px;
+    background-color: #fff;
+    margin-bottom: 60px;   
+    position: relative;
+    background: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.25);
+}
+.coffeeshop {
+    position: absolute;
+    top: 39%;
+    right: 50%;
+    transform: translate(50%, -50%);
+}
+.cofeeshop {
+    text-align: end;
+    padding-right: 25px;
+}
+.cofee {
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 170px;
+   
+    
+}
+.cofeeprice {
+    position: absolute;
+    font-weight: 400;
+    font-size: 14px;
+    top: 85%;
+    right: 10%;
+}
+.news {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 16px;
+}

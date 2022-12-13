@@ -1,0 +1,85 @@
+.header {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    height: 640px;
+    background-image: url(../images/Main\ bg.jpg); 
+  }
+  .main {  
+    font-style: normal;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 58px;
+    color: white;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding-top: 192px;
+    text-align: center;
+  }
+  main {
+    height: 520px;
+    margin-top: 0px;
+    width: 100%;  
+  }
+  .main-text {
+    text-align: center;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 35px;
+    color: #ffffff;
+    margin-top: 35px;
+  }
+  .main-text-two {
+    text-align: center;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 35px;
+    color: #ffffff;
+    margin-top: 12px;
+  }
+  .more {
+    width: 120px;
+    height: 30px;
+    border: #ffffff solid 1px;;
+    color: #ffffff;
+    margin: 18px auto 0 auto;
+    text-align: center;
+    font-size: 14px;
+  }
+  .more p { 
+    text-align: center;  
+    font-size: 14px;
+    transform: translate(0, 20%)
+  }
+  .about {
+    position: relative;
+    text-align: center;
+  }
+  .about-us {
+    color: black;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 35px; 
+    padding-top: 90px; 
+  }
+  main div img {
+    margin-top: 11px;
+    /* align-items: center; */
+  }
+  .about-text-p {
+    color: black;  
+    height: 230px; 
+    width: 590px; 
+    /* position: absolute; */
+    text-align: center;
+    margin: 42px auto 0 auto;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;  
+  }
+  
+  

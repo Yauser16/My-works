@@ -1,0 +1,24 @@
+header {
+  position: absolute;
+}
+      
+.navigate {
+  width:355px;
+  height: 40px;
+  display: flex;  
+  /* position: absolute;  */ 
+  margin-top: 38px;
+  margin-left: 135px;
+  justify-content: space-between; 
+ }
+.menu {
+  display: table;
+}
+.menu__item {
+  /*   display: flex; */
+    font-size: 12px;
+    display: table-cell;
+    vertical-align: bottom;  
+    font-family: 'Merienda', cursive;
+    color: white;  
+}

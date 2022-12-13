@@ -1,0 +1,22 @@
+.footer {
+    width:355px;
+    height: 40px;
+    display: flex;  
+    /* position: absolute;  */ 
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    justify-content: space-between; 
+   }
+  .menu__black {
+    display: table;
+  }
+  .menu__item__black {
+    /*   display: flex; */
+      font-size: 12px;
+      display: table-cell;
+      vertical-align: bottom;  
+      font-family: 'Merienda', cursive;
+      color: rgb(5, 5, 5);  
+  }
