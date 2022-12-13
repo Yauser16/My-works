@@ -1,0 +1,19 @@
+.our__coffee {
+    max-width: 1440px;
+    height: 258px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    background-image: url('../images/Mask Group-1.jpg');
+    text-align: center;
+}
+h3 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 58px;
+    padding-top: 130px;
+    color: white;
+   
+}

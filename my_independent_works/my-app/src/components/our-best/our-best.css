@@ -1,0 +1,52 @@
+
+.our-best {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    height: 495px;
+    background-image: url(../images/Mask\ Group-2.jpg);
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+}
+.our-best h3 {
+    color: black;
+    padding-top: 80px;
+    text-align: center;
+    position: absolute;
+}
+.stock {
+    width: 220px;
+    height: 240px;
+    background-color: #fff;
+    margin-right: 34px;
+    margin-left: 34px;
+    margin-top: 147px; 
+   /*  display: table-cell;
+   
+    vertical-align:super */
+    text-align: center;
+    position: relative;
+}
+.coffeeshop {
+    position: absolute;
+    top: 39%;
+    right: 50%;
+    transform: translate(50%, -50%);
+}
+.cofee {
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: 170px;
+   
+    
+}
+.cofeeprice {
+    position: absolute;
+    font-weight: 400;
+    font-size: 14px;
+    top: 85%;
+    right: 10%;
+}
