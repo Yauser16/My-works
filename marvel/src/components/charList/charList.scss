@@ -31,6 +31,22 @@
         &_selected {
             box-shadow: 0 5px 20px $main-color;
             transform: translateY(-8px);
+        }       
+    }
+    &__items {
+        width: 200px;
+        height: 318px;
+        background-color: $dark;
+        box-shadow: 0 5px 20px $main-color;
+        padding: 15px;
+        cursor: pointer;
+        transition: 0.3s transform;
+        transform: translateY(-8px);
+        img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            transform: translate(-15px, -15px);
         }
     }
     &__name {
