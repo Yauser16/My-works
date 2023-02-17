@@ -56,4 +56,26 @@
         text-transform: uppercase;
         color: #fff;
     }
+    &__transition {
+        opacity: 0;
+        visibility: hidden;
+    }
+    &__transition-enter {
+        opacity: 0;
+      }
+    &__transition-enter-active {
+        opacity: 1;
+        visibility: visible;
+        transition: all 700ms ease-in;
+      }
+    &__transition-enter-done {
+        opacity: 1;
+    }
+    &__transition-exit {
+        opacity: 1;
+    }
+    &__transition-exit-active {
+        opacity: 0;
+        transition: opacity 500ms ease-in;
+    }
 }
