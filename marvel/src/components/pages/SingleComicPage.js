@@ -4,19 +4,19 @@ import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './singleComicPage.scss';
 import useMarvelService from '../../services/MarvelService';
-import Spinner from '../spinner/Spinner';
-import ErrorMessage from '../errorMessage/ErrorMessage';
+import setContent from '../../Utils/setContent';
 import AppBanner from '../appBanner/AppBanner';
 
 
 const SingleComicPage = (props) => {
     const {id} = useParams(); 
     const [comic, setComic] = useState(null);
-    const {loading, error, clearError} = useMarvelService();
+    const {clearError, process, setProcess} = useMarvelService();
     const {getContent} = props;
    
     useEffect(() => {
         updateComic();
+        //eslint-disable-next-line
     }, [id]);
  
     const onComicLoaded = (comic) => {
@@ -26,29 +26,25 @@ const SingleComicPage = (props) => {
     const updateComic = () => {
         clearError();
         getContent(id)      
-        .then(onComicLoaded);
+        .then(onComicLoaded)
+        .then(() => setProcess('confirmed'));
      }
     
-    const errorMessage = error ? <ErrorMessage/> : null;
-    const spinner = loading ? <Spinner/> : null;
-    const content = !(loading || error || !comic) ? <View comic={comic}/> : null;
-        return (
-            <>             
-              {errorMessage}
-              {spinner}
-              {content}  
+        return ( 
+            <>
+              <AppBanner />    
+              {setContent(process, View, comic)}
             </>
         )
 }
-const View = ({comic}) => {
-    const {title, name, description, thumbnail, pageCount, language, price} = comic;
+const View = ({data}) => {
+    const {title, name, description, thumbnail, pageCount, language, price} = data;
     const styled = {'width': '293px', 'height': '293px'};
     const titleItem = name || title;
         
    
     return (
         <>
-            <AppBanner />
             <div className="single-comic">
             <Helmet>
             <meta

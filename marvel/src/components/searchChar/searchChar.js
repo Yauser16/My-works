@@ -1,97 +1,92 @@
 
 import './searchChar.scss';
-import { Formik, Form, useField, useFormikContext } from 'formik';
-import { useState, useEffect } from 'react';
+import { Formik, Form, Field, ErrorMessage as FormikErrorMessage } from 'formik';
+import { useState } from 'react';
 import * as Yup from 'yup';
 import useMarvelService from '../../services/MarvelService';
-import { Link } from 'react-router-dom';
+import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 
-const FormSearchChar = (props) => {
-    const [field, meta] = useField(props);
-    const {values} = useFormikContext(null);
-    const [data, setData] = useState(null);
-    const [char, setChar] = useState(null);
-    const { loading, error, getCharacterName, clearError } = useMarvelService();
-    const metaData = meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
-    ) : null;
+import { Link } from 'react-router-dom';
 
-    useEffect(() => {
-        updateChar(data);
-    }, [data]);
+const setContent = (process, Component) => {
+    switch (process) {
+        case 'waiting':
+            return null;
+        case 'loading':
+            return <Spinner />;
+        case 'erorr':
+            return <ErrorMessage />;
+        case 'confirmed':
+            return <Component />;
+        default:
+            throw new Error('Unexpected process state');
+    }
+}
+
+
+const FormSearchChar = () => {
+    const [char, setChar] = useState(null);
+    const { getCharacterName, clearError, process, setProcess } = useMarvelService();
 
     const onCharLoader = (char) => {
         setChar(char);
     }
 
-    const updateChar = (value) => {
+    const updateChar = (name) => {
         clearError();
-        getCharacterName(value)
+        getCharacterName(name)
             .then(onCharLoader)
-    }
-    const valueSet = (e) => {
-        e.preventDefault();
-        setChar(null);
-        setData(values.name);
+            .then((process) => setProcess('confirmed'));
     }
 
-    const result = !char ? (<div className="error">The character was not faund. Check the name and try again</div>)
-        : (
-            <div className="character"><p className="char">There is! Visit {values.name} page?</p>
-                <Link to={`/character/${char.id}`} className="button button__secondary">
-                    <div className="inner">TO PAGE</div>
-                </Link>
-            </div>
-          );
-    const content = !metaData && !loading && data === values.name ? result : null
-    const errorMessage = error ? <ErrorMessage /> : null;
-    const spinner = loading ? (<p className="load">loading...</p>) : null;
+    const result = !char ? null : char === 'sol' ? (<div className="error">The character was not faund. Check the name and try again</div>) :
+    (<div className="character">
+        <p className="char">There is! Visit {char.name} page?</p>
+        <Link to={`/characters/${char.id}`} className="button button__secondary">
+            <div className="inner">TO PAGE</div>
+        </Link>
+    </div>);
+    
     return (
-        <>
-        <Form className="searchar__info" onSubmit={valueSet}>
-        <h3 className="searchar__comics">Or find a character by name:</h3>
-            <div className="searchar__basics">
-                <input {...props} {...field}  className="searchar__comics-item" placeholder='Enter name' />
-                <div className="searchar__btns">
-                    <button type="submit" className="button button__main">
-                        <div className="inner">FIND</div>
-                    </button>
-                </div>
-            </div>
-            {spinner}
-            {errorMessage}
-            {metaData}
-            {content}
-        </Form>
-        </>
-    )
-}
-
-const SearchCharForm = () => {
-
-    return (
+        <div className="searchar__info">
         <Formik
             initialValues={{
-                name: ''
+                charName: ''
             }}
             validationSchema={Yup.object({
-                name: Yup.string()
+                charName: Yup.string()
                     .min(2, 'Min 2 simbols')
                     .required('This field is required')
             })}
-            onSubmit={values => console.log(JSON.stringify(values, null, 2))}>
-            {({isSubmitting}) => (
-                <FormSearchChar
-                    id="name"
-                    name="name"
-                    type="text"
-                />
-                )
-            }
+            onSubmit={({ charName }) => {updateChar(charName); console.log(charName)}}>
+                {({isSubmitting}) => (
+                <Form >
+                    <h3 className="searchar__comics" htmlFor="charName">Or find a character by name:</h3>
+                    <div className="searchar__basics">
+                        <Field
+                            className="searchar__comics-item"
+                            id="charName"
+                            name="charName"
+                            type="text"
+                            as='input'
+                            placeholder='Enter name' />
+                        <div className="searchar__btns">
+                            <button type="submit" className="button button__main">
+                                <div className="inner">FIND</div>
+                            </button>
+                        </div>
+                    </div>
+                    <FormikErrorMessage component='div' className='error' name="charName"  />  
+                   
+                </Form>
+                )}
+                
         </Formik>
+        {setContent(process, () => result)}
+        </div>
 
     )
 }
 
-export default SearchCharForm;
+export default FormSearchChar;
