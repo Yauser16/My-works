@@ -1,0 +1,193 @@
+{
+  "delivery": [
+    {
+      "name": "ЗАО \"РЕЛОД\"",
+      "contactName": "ЗАО \"РЕЛОД\"",
+      "phone": "89166735135",
+      "address": "Большой Головин переулк 13",
+      "place": "центр",
+      "date": "01.04.2023",
+      "documents": "1212",
+      "description": "",
+      "sender": "Рачкова Елена",
+      "id": "12d867fa-50e6-4bb2-b631-4ca4ffb1ad69"
+    },
+    {
+      "name": "Алексей",
+      "contactName": "Алексей",
+      "phone": "89166735178",
+      "address": "Складочная ул., 16",
+      "place": "центр",
+      "date": "01.04.2023",
+      "documents": "767683, 768690",
+      "description": "",
+      "sender": "Рачкова Елена",
+      "id": "b650d3cb-18ee-4509-b15e-5fa8ef0aaaa6"
+    },
+    {
+      "name": "ЗАО \"РЕЛОД\"",
+      "contactName": "ЗАО \"РЕЛОД\"",
+      "phone": "89166735178",
+      "address": "Большой Головин переулк 13",
+      "place": "центр",
+      "date": "10.04.2023",
+      "documents": "",
+      "description": "",
+      "sender": "Рачкова Елена",
+      "id": "de1b03b0-0dfc-4171-9f20-60e5384f0a62"
+    },
+    {
+      "name": "Михаил Якунин",
+      "contactName": "Михаил Якунин",
+      "phone": "89166735135",
+      "address": "Складочная ул., 16",
+      "place": "центр",
+      "date": "12.04.2023",
+      "documents": "767683, 768690",
+      "description": "",
+      "sender": "Рачкова Елена",
+      "id": "b1bd8ac4-c31b-402c-97b6-16db097b614f"
+    },
+    {
+      "name": "ЗАО \"РЕЛОД\"",
+      "contactName": "ЗАО \"РЕЛОД\"",
+      "phone": "89166735135",
+      "address": "Складочная ул., 16",
+      "place": "",
+      "date": "12.04.2023",
+      "documents": "",
+      "description": "",
+      "sender": "Елена Шилова",
+      "id": "60532d19-fe75-4dd1-8da4-583d49efefb9"
+    },
+    {
+      "name": "Михаил Якунин",
+      "contactName": "Михаил Якунин",
+      "phone": "89166735135",
+      "address": "Большой Головин переулк 13",
+      "place": "центр",
+      "date": "13.04.2023",
+      "documents": "",
+      "description": "",
+      "sender": "Рачкова Елена",
+      "id": "e60041ec-be1d-4997-9f59-3c46983b59fb"
+    },
+    {
+      "name": "Zreybyf",
+      "contactName": "Алексей",
+      "phone": "89166735178",
+      "address": "Большой Головин переулк 13",
+      "place": "центр",
+      "date": "01.04.2023",
+      "documents": "1111",
+      "description": "jjhlkg",
+      "sender": "Рачкова Елена",
+      "id": "2fdbe30f-dcc1-4f32-a5f9-99d65b539c8c"
+    }
+  ],
+  "deliveriesprops": [
+    {
+      "id": 1,
+      "name": "name",
+      "label": "Получатель"
+    },
+    {
+      "id": 2,
+      "name": "contactName",
+      "label": "Контактное лицо получателя"
+    },
+    {
+      "id": 3,
+      "name": "phone",
+      "label": "Телефон контактного лица"
+    },
+    {
+      "id": 4,
+      "name": "address",
+      "label": "Адрес доставки"
+    },
+    {
+      "id": 5,
+      "name": "place",
+      "label": "Округ, район"
+    },
+    {
+      "id": 6,
+      "name": "date",
+      "label": "Дата доставки"
+    },
+    {
+      "id": 7,
+      "name": "documents",
+      "label": "Документы"
+    },
+    {
+      "id": 8,
+      "name": "description",
+      "label": "Детали доставки"
+    },
+    {
+      "id": 9,
+      "name": "sender",
+      "label": "Отправитель"
+    }
+  ],
+  "drivers": [
+    {
+      "name": "Сидоров Н. К.",
+      "id": "0d0a612a-77b7-4a15-aed1-1c89d5845577"
+    },
+    {
+      "name": "Воловченко Н. В.",
+      "id": "ac5791a1-8664-4de6-b3ec-90f5bc9a0139"
+    },
+    {
+      "name": "Симонов И. Ж.",
+      "id": "fe11ebad-68ea-4bae-843d-38eb05e44b05"
+    }
+  ],
+  "distrdeliveries": [
+    {
+      "name": "ЗАО \"РЕЛОД\"",
+      "contactName": "ЗАО \"РЕЛОД\"",
+      "phone": "89166735135",
+      "address": "Большой Головин переулк 13",
+      "place": "центр",
+      "date": "01.04.2023",
+      "documents": "1212",
+      "description": "",
+      "sender": "Рачкова Елена",
+      "driver": "Воловченко Н. В.",
+      "check": "12d867fa-50e6-4bb2-b631-4ca4ffb1ad69",
+      "id": "959605f0-55ee-45a9-98bc-85973a21feba"
+    },
+    {
+      "name": "Алексей",
+      "contactName": "Алексей",
+      "phone": "89166735178",
+      "address": "Складочная ул., 16",
+      "place": "центр",
+      "date": "01.04.2023",
+      "documents": "767683, 768690",
+      "description": "",
+      "sender": "Рачкова Елена",
+      "driver": "Сидоров Н. К.",
+      "check": "b650d3cb-18ee-4509-b15e-5fa8ef0aaaa6",
+      "id": "70a9a23e-2634-45c1-953a-884a9efac254"
+    },
+    {
+      "name": "ЗАО \"РЕЛОД\"",
+      "contactName": "ЗАО \"РЕЛОД\"",
+      "phone": "89166735178",
+      "address": "Большой Головин переулк 13",
+      "place": "центр",
+      "date": "10.04.2023",
+      "documents": "",
+      "description": "",
+      "sender": "Рачкова Елена",
+      "driver": "Симонов И. Ж.",
+      "check": "de1b03b0-0dfc-4171-9f20-60e5384f0a62",
+      "id": "75ccab4a-8208-443f-8990-02362bb92f14"
+    }
+  ]
+}

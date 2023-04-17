@@ -1,0 +1,9 @@
+
+
+.badge {
+    cursor: pointer;
+}
+
+.badge:hover {
+    background-color: blue;
+}
