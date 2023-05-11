@@ -40,14 +40,13 @@ const DriverSelections = memo((props) => {
         createDistribution(newDistr).unwrap();
         setDriver(newDistr);
     };
-    console.log(distribution/* [0].check */, distrItem.id, driver);
-
+    
     const cancelDriver = () => {
 
         if (driver.id) {
             deleteDistribution(driver.id);
-            setDriver('Водитель отменён');
-            setTimeout(() => setDriver('Водитель отменён'), 5000);
+            setDriver('Водитель отменён'); 
+            setTimeout(() => setDriver('Водитель отменён'), 2000);
         } 
     };
     const stateItem = () => {
@@ -61,7 +60,7 @@ const DriverSelections = memo((props) => {
             });
         } return;
     };
-    setTimeout(() => stateItem(), 2000);
+    setTimeout(() => stateItem(), 1000);
 
     return (
         <>

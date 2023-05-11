@@ -1,44 +1,64 @@
 // components/contactus-form.component.js
 
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as Yup from 'yup';
 import { v4 as uuidv4 } from 'uuid';
 import './deliveryForm.css';
 import { useCreateDeliverMutation } from '../../api/apiSlice';
+import useDeliveryServices from '../servises/DeliveryServices';
+
 
 const DeliveryForm = (props) => {
     const [createDeliver] = useCreateDeliverMutation();
-    const {setFilteredDeliveries} = props;
-    const postDelivery = (values) => { 
+    const { setFilteredDeliveries, authUsers } = props;
+    const [state, setState] = useState('0');
+    let inputAddress = useRef();
+    const { selectData } = useDeliveryServices();
+
+
+    useEffect(() => {
+        const script = document.createElement('script');
+        const body = document.querySelector('body');
+        script.async = false;
+        script.textContent = " ymaps.ready(init); function init(){ const suggestView = new ymaps.SuggestView('suggest')}";
+        body.appendChild(script);
+
+        return () => body.removeChild(script);
+    }, []);
+
+
+    const postDelivery = (values) => {
         const newDelivery = {
             name: values.name,
             contactName: values.contactName,
             phone: values.phone,
-            address: values.address,
-            place: values.place,
+            address: inputAddress.current.value,
             date: values.dateOfDelivery,
             documents: values.documentNumbers,
             description: values.description,
-            sender: values.sender,
+            sender: authUsers.name,
             id: uuidv4()
         };
-        
-            createDeliver(newDelivery).unwrap();
-    }
+        createDeliver(newDelivery).unwrap();
+    };
+
+    const addressValue = e => setState(e.target.value);
+    const selectMessage = state.length < 3 || state === '' ? (<p className="error">Обязательное поле!</p>) : null;
+    const errorMessage = state === '0' ? null : selectMessage;
+
+    const input = document.getElementById('suggest');
+
     return (
         <Formik
             initialValues={{
                 name: '',
                 contactName: '',
                 phone: '',
-                address: '',
-                place: '',
                 dateOfDelivery: '',
                 documentNumbers: '',
-                description: '',
-                sender: ''
+                description: ''
             }}
             validationSchema={Yup.object({
                 name: Yup.string()
@@ -50,31 +70,28 @@ const DeliveryForm = (props) => {
                 phone: Yup.string()
                     .matches(/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/, 'номер не корректен')
                     .required('Обязательное поле!'),
-                address: Yup.string()
-                    .min(2, 'Минимум 2 символа')
-                    .required('Обязательное поле!'),
-                place: '',
                 dateOfDelivery: Yup.string()
                     .required('Обязательное поле!'),
                 documentNumbers: Yup.string()
                     .min(2, 'Минимум 2 символа'),
                 description: Yup.string()
-                    .min(2, 'Минимум 2 символа'),
-                sender: Yup.string()
                     .min(2, 'Минимум 2 символа')
-                    .required('Обязательное поле!')
-
             })}
-            onSubmit={(values, { setSubmitting, resetForm }) => {
-                postDelivery(values);
-                setFilteredDeliveries(false);
-                setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                }, 1000);
-                resetForm();
+            onSubmit={(values, { resetForm }) => {
+                if (selectMessage === null && state !== '0') {
+                    postDelivery(values);
+                    setFilteredDeliveries(false);
+                    resetForm();
+                    setState('0');
+                    input.value = ''
+                }
+                else {
+                    setState('');
+                    return null;
+                }
             }}
         >
+
             {({ isSubmitting }) => (
                 <Form>
                     <div className="form-group">
@@ -87,7 +104,6 @@ const DeliveryForm = (props) => {
                             placeholder="введите название организации получателя" />
                         <ErrorMessage className="error" name="name" component="div" />
                     </div>
-
                     <div className="form-group">
                         <label htmlFor="contactName">Контактное лицо получателя</label>
                         <Field
@@ -98,7 +114,6 @@ const DeliveryForm = (props) => {
                             placeholder="укажите контактное лицо получателя" />
                         <ErrorMessage className='error' name="contactName" component='div' />
                     </div>
-
                     <div className="form-group">
                         <label htmlFor="phone">Телефон контактного лица</label>
                         <Field
@@ -109,34 +124,28 @@ const DeliveryForm = (props) => {
                             placeholder="введите номер телефона получателя" />
                         <ErrorMessage className='error' name="phone" component='div' />
                     </div>
-
                     <div className="form-group">
-                        <label htmlFor="address">Адрес доставки</label>
-                        <Field
-                            name="address"
-                            id="address"
+                        <label htmlFor="suggest">Адрес доставки</label>
+                        <input
+                            name="suggest"
+                            id="suggest"
                             className="form-control"
                             type="text"
+                            onBlur={addressValue}
+                            ref={inputAddress}
                             placeholder="укажите адрес доставки" />
-                        <ErrorMessage className='error' name="address" component='div' />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="place">Округ, район (заполняется автоматически)</label>
-                        <Field
-                            name="place"
-                            id="place"
-                            className="form-control"
-                            type="text"
-                        />
-                        <ErrorMessage className='error' name="place" component='div' />
+                        {errorMessage}
                     </div>
                     <div className="form-group">
                         <label htmlFor="dateOfDelivery">Дата доставки</label>
                         <Field
+                            as="select"
                             name="dateOfDelivery"
                             className="form-control"
-                            type="text"
-                            placeholder="укажите дату доставки" />
+                            type="text" >
+                            <option  value="">Выберите дату доставки</option>
+                            {selectData()}
+                        </Field>
                         <ErrorMessage className='error' name="dateOfDelivery" component='div' />
                     </div>
                     <div className="form-group">
@@ -160,25 +169,15 @@ const DeliveryForm = (props) => {
                             placeholder="Укажите детали доставки (если необходимо)" />
                         <ErrorMessage className='error' name="description" component='div' />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="sender">Отправитель</label>
-                        <Field
-                            name="sender"
-                            id="sender"
-                            className="form-control"
-                            type="text"
-                            placeholder="Укажите ответственное лицо отправителя" />
-                        <ErrorMessage className='error' name="sender" component='div' />
-                    </div>
                     <div className="form-group mt-2">
-                        <button type="submit" className="btn btn-primary" disabled={isSubmitting}>{isSubmitting ? "Идёт отправка..." : "Отправить"}</button>
-                        <button type="reset" className="btn btn-secondary" style={{"marginLeft": "4px"}}disabled={isSubmitting}>Очистить форму</button>
+                        <button type="submit" className="btn btn-primary" style={{ "marginBottom": "4px" }}disabled={isSubmitting}>{isSubmitting ? "Идёт отправка..." : "Отправить"}</button>
+                        <button type="reset" onClick={() => { setState('0'); input.value = '' }} className="btn btn-secondary" style={{ "marginLeft": "4px" }}>Очистить форму</button>
                     </div>
-
                 </Form>
             )}
         </Formik>
     );
+
 };
 
 export default DeliveryForm;

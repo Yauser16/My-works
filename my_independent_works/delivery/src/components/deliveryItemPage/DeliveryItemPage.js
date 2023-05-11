@@ -3,7 +3,7 @@
 const DeliveryItemPage = (props) => {
     return (
         <div className="card" style={{'width': '18rem;'}}>
-            <img src="..." className="card-img-top" alt="..."/>
+            {<img src="..." className="card-img-top" alt="..."/>}
                 <div className="card-body">
                     <h5 className="card-title">Заголовок карточки</h5>
                     <p className="card-text">Небольшой пример текста, который должен основываться на названии карты и составлять основную часть содержимого карты.</p>

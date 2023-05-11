@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const apiSlice = createApi({
     reducerPath: 'api',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://delivery.teststudyweb.ru:3001' }),
     tagTypes: ['Delivery', 'Deliveriesprops', 'Drivers', 'Distribution'],
     endpoints: builder => ({
         getDelivery: builder.query({
@@ -59,8 +59,15 @@ export const apiSlice = createApi({
                 method: 'DELETE'
             }),
             invalidatesTags: ['Distribution']
+        }),
+        deleteDriver: builder.mutation({
+            query: id => ({
+                url: `/drivers/${id}`,
+                method: 'DELETE'
+            }),
+            invalidatesTags:  ['Drivers']
         })
     })
 });
 
-export const { useGetDeliveryQuery, useGetPropsQuery, useGetDriverQuery, useGetDistrQuery, useCreateDeliverMutation, useCreateDriverMutation, useCreateDistrMutation, useDeleteDeliverMutation, useDeleteDistrMutation } = apiSlice;
+export const { useGetDeliveryQuery, useGetPropsQuery, useGetDriverQuery, useGetDistrQuery, useCreateDeliverMutation, useCreateDriverMutation, useCreateDistrMutation, useDeleteDeliverMutation, useDeleteDistrMutation, useDeleteDriverMutation } = apiSlice;

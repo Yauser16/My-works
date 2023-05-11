@@ -1,50 +1,55 @@
 
 import React, { useState, useEffect, memo } from 'react';
-import { useCreateDriverMutation } from '../../api/apiSlice';
+import { useCreateDriverMutation, useDeleteDriverMutation } from '../../api/apiSlice';
+import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import DeliverPage from './deliverPage';
+import ModalDelivery from '../modalDeliveryPage/ModalDelivery';
 import DriverSelections from '../driverSelection/DriverSelection';
-import { CSVLink } from 'react-csv';
-// import { ExportCSV } from '../servises/DeliveryServices';
+import useDeliveryServices from '../servises/DeliveryServices';
+
 
 const DeliveriesPage = memo((props) => {
-    const { distribution, driversNames, deliveryItems, isLoading, isError } = props;
-    const [filteredDeliveries, setFilteredDeliveries] = useState(null);
+    const { distribution, driversNames, deliveryItems, refetch, isLoading, isError, authUsers } = props;
+    const [filteredDeliveries, setFilteredDeliveries] = useState(deliveryItems);
     const [deliveryItem, setDeliveryItem] = useState(null);
     const [newDriver, setNewDriver] = useState('');
     const [createDriver] = useCreateDriverMutation();
-    const deliveries = filteredDeliveries ? filteredDeliveries : deliveryItems;
+    const [deleteDriver] = useDeleteDriverMutation();
+    const { today, exportCSV } = useDeliveryServices();
 
-    console.log(deliveries);
-    
-    const today = () => {
-        let date = new Date();
-        let year = date.getFullYear();
-        let mounth = date.getMonth() + 1;
-        let day = date.getDate();
-        return mounth < 10 ? `${day}.0${mounth}.${year}` : `${day}.${mounth}.${year}`;
-    };
 
     const [selectedDate, setSelectedDate] = useState(today);
-    console.log(today(), selectedDate);
 
     const onFilteredItems = (data) => {
-        if (selectedDate === "all") {
-            setFilteredDeliveries(null);
-        } else {
+        if (selectedDate !== "all") {
             let result = data.filter(item => item.date === selectedDate);
             setFilteredDeliveries(result);
         }
+        if (selectedDate === "all") {
+            setFilteredDeliveries(data);
+        }
     }
 
-    useEffect(() => onFilteredItems(deliveries),
+    const onRefetch = () => setInterval(() => { refetch(); }, 3000);
+
+    useEffect(() => {
+        if (!isLoading) {
+            onRefetch();
+        }
+        return clearInterval(onRefetch);
+    },
         // eslint-disable-next-line
         []);
+    useEffect(() => {
+        onFilteredItems(deliveryItems);
+    },
+        // eslint-disable-next-line
+        [deliveryItems]);
 
     if (isLoading) {
         return (
             <div className="spinner-border text-info" style={{ "margin": "100px auto" }} role="status">
-                <span className="sr-only">{/* Loading... */}</span>
+                <span className="sr-only"></span>
             </div>
         )
     } else {
@@ -66,7 +71,9 @@ const DeliveriesPage = memo((props) => {
             filteredDate.push(today());
         }
         const dates = filteredDate.map(item => {
-            return <option key={item} value={item}>{item}</option>
+            if (item >= today()) {
+                return <option key={item} value={item}>{item}</option>
+            } return null;
         });
         return dates;
     };
@@ -89,27 +96,20 @@ const DeliveriesPage = memo((props) => {
             )
         });
     }
-    
+
     const addNewDriver = (driver) => {
         const newDriver = {
             name: driver,
             id: uuidv4()
         }
-        createDriver(newDriver).unwrap();
-    }     
+        if (newDriver.name !== '')
+            createDriver(newDriver).unwrap();
+    }
+    const driversListForDelete = () => driversNames.map(i => {
+        return <li key={i.id}><button className="dropdown-item" value={i.name} onClick={(e) => { deleteDriver(i.id); e.preventDefault() }} >{i.name}</button></li>
+    });
 
-    const elements = deliveryRender(deliveries);
-    const headers = [
-        { label: "Клиент", key: "name" },
-        { label: "Контактное лицо", key: "contactName" },
-        { label: "Телефон контактного лица", key: "phone" },
-        { label: "Адрес доставки", key: "address" },
-        { label: "округ, район", key: "place" },
-        { label: "Дата доставки", key: "date" },
-        { label: "Документы", key: "documents" },
-        { label: "Детали", key: "description" },
-        { label: "Отправитель", key: "sender" }
-    ];
+    const elements = deliveryRender(filteredDeliveries.filter(item => item.date >= today()));
 
     return (
         <>
@@ -117,7 +117,7 @@ const DeliveriesPage = memo((props) => {
                 <div className="p-2 flex-fill">
                     <div className="row justify-content-between ">
                         <div className="col-4">
-                            <form className="row row-cols-lg-auto g-3 align-items-center" onSubmit={(e) => { onFilteredItems(deliveries); e.preventDefault(); }}>
+                            <form className="row row-cols-lg-auto g-3 align-items-center" onSubmit={(e) => { onFilteredItems(deliveryItems); e.preventDefault(); }}>
                                 <div className="col-12">
                                     <label className="visually-hidden" htmlFor="inlineFormSelectPref">Предпочтение</label>
                                     <select className="form-select" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)}/* multiple size="1" */ id="inlineFormSelectPref">
@@ -131,7 +131,7 @@ const DeliveriesPage = memo((props) => {
                             </form>
                         </div>
                         <div className="col-4">
-                            <form className="row row-cols-lg-auto g-3 align-items-center justify-content-end" onSubmit={(e) => { addNewDriver(newDriver); e.preventDefault(); }}>
+                            <form className="row row-cols-lg-auto g-3 align-items-center justify-content-end">
                                 <div className="col-12">
                                     <label className="visually-hidden" htmlFor="inlineFormInputGroupUsername">Добавить водителя</label>
                                     <div className="input-group">
@@ -139,7 +139,15 @@ const DeliveriesPage = memo((props) => {
                                     </div>
                                 </div>
                                 <div className="col-12">
-                                    <button type="submit" className="btn btn-success">Добавить</button>
+                                    <button type="button" onClick={(e) => { addNewDriver(newDriver); e.preventDefault(); }} className="btn btn-success">Добавить</button>
+                                </div>
+                                <div className="dropdown">
+                                    <button className="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Удалить водителя
+                                    </button>
+                                    <ul className="dropdown-menu">
+                                        {driversListForDelete()}
+                                    </ul>
                                 </div>
                             </form>
                         </div>
@@ -148,8 +156,18 @@ const DeliveriesPage = memo((props) => {
                         <div style={{ "display": 'flex', "justifyContent": 'center' }}>
                             <h4>СПИСОК ДОСТАВОК</h4>
                         </div>
+
                         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <CSVLink class="btn btn-outline-secondary" role="button" data={deliveries} headers={headers} separator={','} filename={'Deliveries'}>Выгрузить в CSV</CSVLink>
+                            {authUsers.admin ? <Link className="btn btn-outline-primary" role="button" to="/admin">Админпанель</Link> : null}
+                            <div className="dropdown">
+                                <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Выгрузить в CSV
+                                </button>
+                                <ul className="dropdown-menu">
+                                    <li>{exportCSV(filteredDeliveries, 'Deliveries', 'Доставки на дату')}</li>
+                                    <li>{exportCSV(distribution, 'Deliveries', 'Выбор водитетей')}</li>
+                                </ul>
+                            </div>
                         </div>
                         <ul className="list-group" style={{ "marginTop": "30px" }}>
                             {elements}
@@ -157,7 +175,7 @@ const DeliveriesPage = memo((props) => {
                     </div>
                 </div>
             </div>
-            {deliveryItem ? <DeliverPage deliveryItem={deliveryItem} setDeliveryItem={setDeliveryItem} /> : null}
+            {deliveryItem ? <ModalDelivery display={'block'} btnDisplay={'none'} deliveryItem={deliveryItem} setDeliveryItem={setDeliveryItem} /> : null}
         </>
     )
 })
