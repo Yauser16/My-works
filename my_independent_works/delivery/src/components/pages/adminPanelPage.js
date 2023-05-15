@@ -98,12 +98,12 @@ const AdminPanelPage = () => {
     }
     const sendMail = values => {
         const mailDetails = {
-            from_name: 'Доставка корпоративным клиентам',
+            from_name: 'Доставка РЕЛОД',
             to_name: values.name,
             message: values.id,
             reply_to: values.login
         }
-        emailjs.send('service_q8c12ve', 'template_yk3kzup', mailDetails, 'rIqvNzHJpzq6R_U-h')
+        emailjs.send('service_q8c12ve', 'template_j3xquk6', mailDetails, 'rIqvNzHJpzq6R_U-h')
             .then((result) => {
                 console.log('SUCCESS!', result.text);
             }, (error) => {

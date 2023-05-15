@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import ModalDelivery from '../modalDeliveryPage/ModalDelivery';
 import DriverSelections from '../driverSelection/DriverSelection';
 import useDeliveryServices from '../servises/DeliveryServices';
+import "./deliveriesPage.css";
 
 
 const DeliveriesPage = memo((props) => {
@@ -97,7 +98,7 @@ const DeliveriesPage = memo((props) => {
                 <li className="list-group-item d-flex justify-content-between align-items-start" key={item.id}>
                     <div className="ms-2 me-auto">
                         <div className="fw-bold">{item.date}</div>
-                        {item.name}
+                        {item.name}  <span className="address" style={{"fontStyle": "italic", "marginLeft": "10px"}}>адрес: {item.address}</span>
                     </div>
                     <button type="button" className="btn btn-link" onClick={() => { setDeliveryItem(item); }}>Детали</button>
                     <DriverSelections distrItem={item} driversNames={driversNames} distribution={distribution} />
@@ -165,9 +166,8 @@ const DeliveriesPage = memo((props) => {
                         <div style={{ "display": 'flex', "justifyContent": 'center' }}>
                             <h4>СПИСОК ДОСТАВОК</h4>
                         </div>
-
                         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                            {authUsers.admin ? <Link className="btn btn-outline-primary" role="button" to="/admin">Админпанель</Link> : null}
+                            {authUsers.admin ? <Link className="btn btn-outline-primary" style={{"height": "40px", "width": "150px"}} role="button" to="/admin">Пользователи</Link> : null}
                             <div className="dropdown">
                                 <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Выгрузить в CSV

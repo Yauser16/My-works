@@ -202,19 +202,6 @@
   ],
   "distrdeliveries": [
     {
-      "name": "Михаил Анатольевич Якунин",
-      "contactName": "Михаил Анатольевич Якунин",
-      "phone": "89166735135",
-      "address": "Москва, Каширское шоссе, 84к1 ",
-      "date": "2023-05-05",
-      "documents": "",
-      "description": "",
-      "sender": "Михаил Анатольевич Якунин",
-      "driver": "Симонов И. Ж.",
-      "check": "78dcd6ab-7811-4986-b6ad-eee1a79ec6c9",
-      "id": "7ef9b06b-8542-47b6-beab-d57f9db19546"
-    },
-    {
       "name": "ООО Солнцево",
       "contactName": "Антон Алексеев",
       "phone": "89166745454",
@@ -222,7 +209,7 @@
       "date": "2023-05-05",
       "documents": "123123",
       "description": "Передать в руки.",
-      "sender": "Михаил Анатольевич Якунин, изменил: Михаил Анатольевич Якунин",
+      "sender": "Михаил Якунин",
       "driver": "Воловченко Н. В.",
       "check": "69886783-647c-4444-9589-204bbc924316",
       "id": "09b586af-0e43-4a05-8aaf-54c53ecf477c"
@@ -235,7 +222,7 @@
       "date": "2023-05-05",
       "documents": "",
       "description": "",
-      "sender": "Михаил Анатольевич Якунин",
+      "sender": "Михаил Якунин",
       "driver": "Борисов С. П.",
       "check": "68f686bf-c2c3-4601-9d9d-d31616184913",
       "id": "f3f63ec5-e475-4248-9088-bfe29b8dccf9"
@@ -248,7 +235,7 @@
       "date": "2023-05-16",
       "documents": "",
       "description": "",
-      "sender": "Михаил Анатольевич Якунин, изменил: Михаил Анатольевич Якунин, изменил: Михаил Анатольевич Якунин",
+      "sender": "Михаил Якунин",
       "driver": "Симонов И. Ж.",
       "check": "15d64381-f412-4231-a14e-9a01779429e2",
       "id": "9e46b0f4-9adf-4601-96f1-5ea7cf2af2c3"
@@ -256,35 +243,11 @@
   ],
   "auth": [
     {
-      "name": "Алексей",
-      "login": "www@rekod.ru",
-      "password": "",
-      "role": "manager",
-      "id": "589094fe-6dcf-4d43-85c4-3c16643fbdd3",
-      "admin": false
-    },
-    {
-      "name": "Сергей Иванов",
-      "login": "relod@relod.ru",
-      "password": "",
-      "role": "manager",
-      "id": "56e337c5-e16b-46dd-b8a3-a3270323b28e",
-      "admin": false
-    },
-    {
-      "name": "Алексей Петров",
-      "login": "gfgfg@fdfdf.ru",
-      "password": "",
-      "role": "manager",
-      "id": "6a8b4217-24a2-4a54-b61d-0d5834ca125c",
-      "admin": false
-    },
-    {
-      "name": "Михаил Анатольевич Якунин",
-      "login": "ya16-2@ya.ru",
+      "name": "Андрей Волков",
+      "login": "andrei.volkov@relod.ru",
       "password": "123456",
-      "role": "manager",
-      "id": "1a266190-d594-441d-8d86-747984fe0e3f",
+      "role": "dispatcher",
+      "id": "589094fe-6dcf-4d43-85c4-3c16643fbdd3",
       "admin": true
     },
     {
