@@ -1,19 +1,19 @@
 {
-  "short_name": "Delivery RELOD",
-  "name": "Corporate delivery RELOD",
+  "short_name": "Delivery",
+  "name": "Corporate delivery",
   "icons": [
     {
-      "src": "relod_logo.svg",
+      "src": "delivery.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "relod_logo.png",
+      "src": "delivery.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "relod_logo.png",
+      "src": "deliverypng.png",
       "type": "image/png",
       "sizes": "512x512"
     }

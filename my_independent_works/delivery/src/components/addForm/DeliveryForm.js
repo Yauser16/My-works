@@ -68,7 +68,7 @@ const DeliveryForm = (props) => {
                     .min(2, 'Минимум 2 символа')
                     .required('Обязательное поле!'),
                 phone: Yup.string()
-                    .matches(/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/, 'номер не корректен')
+                    .matches(/^[7-8]\d{9}$/, 'номер не корректен')
                     .required('Обязательное поле!'),
                 dateOfDelivery: Yup.string()
                     .required('Обязательное поле!'),
@@ -170,7 +170,7 @@ const DeliveryForm = (props) => {
                         <ErrorMessage className='error' name="description" component='div' />
                     </div>
                     <div className="form-group mt-2">
-                        <button type="submit" className="btn btn-primary" style={{ "marginBottom": "4px" }}disabled={isSubmitting}>{isSubmitting ? "Идёт отправка..." : "Отправить"}</button>
+                        <button type="submit" className="btn btn-primary" style={{ "marginBottom": "4px" }}disabled={isSubmitting}>{isSubmitting ? "Добавление..." : "Добавить"}</button>
                         <button type="reset" onClick={() => { setState('0'); input.value = '' }} className="btn btn-secondary" style={{ "marginLeft": "4px" }}>Очистить форму</button>
                     </div>
                 </Form>

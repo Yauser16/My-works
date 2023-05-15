@@ -45,7 +45,7 @@ const EnterPage = (props) => {
       onSubmit={(values) => {
         authorization(values);
       }}>
-      <Form style={{ 'maxWidth': "1000px", 'margin': '100px auto auto auto' }}>
+      <Form style={{ 'width': '700px', 'maxWidth': "70%", 'margin': '100px auto auto auto' }}>
         <div className="mb-3">
           <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Эл. почта</label>
           <div className="col-sm-10">

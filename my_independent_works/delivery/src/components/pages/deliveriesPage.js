@@ -30,6 +30,15 @@ const DeliveriesPage = memo((props) => {
         }
     }
 
+    const onFilteredDistr = (data) => {
+        if (selectedDate !== "all") {
+            return data.filter(item => item.date === selectedDate);
+        }
+        if (selectedDate === "all") {
+            return data;
+        }
+    }
+
     const onRefetch = () => setInterval(() => { refetch(); }, 3000);
 
     useEffect(() => {
@@ -126,7 +135,7 @@ const DeliveriesPage = memo((props) => {
                                     </select>
                                 </div>
                                 <div className="col-12">
-                                    <button type="submit" className="btn btn-primary">Отправить</button>
+                                    <button type="submit" className="btn btn-primary">Выбрать</button>
                                 </div>
                             </form>
                         </div>
@@ -165,7 +174,7 @@ const DeliveriesPage = memo((props) => {
                                 </button>
                                 <ul className="dropdown-menu">
                                     <li>{exportCSV(filteredDeliveries, 'Deliveries', 'Доставки на дату')}</li>
-                                    <li>{exportCSV(distribution, 'Deliveries', 'Выбор водитетей')}</li>
+                                    <li>{exportCSV(onFilteredDistr(distribution), 'Drivers', 'Выбор водитетей')}</li>
                                 </ul>
                             </div>
                         </div>

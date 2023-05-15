@@ -81,7 +81,7 @@ const DeliveryList = (props) => {
             )
         });
     }
-    const elements = deliveryRender(deliveryItems).slice(-12);
+    const elements = deliveryItems.length > 10 ? deliveryRender(deliveryItems).slice(-10) : deliveryRender(deliveryItems);
 
     return (
         <>
