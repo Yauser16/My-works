@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# Описание проекта
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Web-приложение для выстраивания взаимодействия между отделом продаж корпоративным клиентам (ОП), складом и транспортным отделом (ТрО) торговой компании
 
-## Available Scripts
+## Техническое задание
 
-In the project directory, you can run:
+В настоящее время основным рабочим инструментом продаж торговой компании является SAP BO, где нет возможности планировать доставки грузов клиентам. ОП, оформляя продажи корпоративным клиентам, также, в соответствии с их пожеланиями, оформляет доставку, отражая это в таблице Excel. В конце каждого рабочего дня, обновлённая таблица отсылается по email  на склад и в ТрО.
+Т.к. описанный процесс передачи данных давно устарел и требует оптимизации, было принято решение разработать механизм для отражения и передачи сведений на склад и в ТрО по оформленным сотрудниками ОП доставкам грузов клиентам, отвечающего следующим основным требованиям:
 
-### `npm start`
+1.	Всем ответственным лицам в любое время должна быть доступна детализированная информация о планируемых доставках;
+2.	На складе и в ТрО всегда известно кто оформил доставку и кто внес изменения, если они были;
+3.	Сотрудники ОП узнают, кто повезёт груз, сразу после назначения водителя на доставку;
+4.	Форма добавления доставки должна иметь обязательные поля с валидацией, номер телефона должен быть определённой длины и начинаться с «8», 
+выбор даты доставки из списка дат на 20 дней вперёд, включаяя текущий день, при наборе адреса доставки должны появляться подсказки;
+5.  Детали каждой доставки отражаются в карточке, содержащей карту с меткой по адресу доставки;
+6.	Приложение должно быть оптимизировано под смартфон;
+	
+### Детали разработки
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Для выполнения задач, поставленных в рамках ТЗ, были приняты следующие решения:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Т.к. особых требований к интерфейсу приложения обозначено не было, для визуальной части решено использовать Bootstrap;
+2. В качестве тестовой БД был использован файл JSON, на хостинге для тестирования запущен JSON и HTTPS сервер. Взаимодействие с БД реализовано посредством RTK Query;
+4. Вход в приложение по логину и паролю: 
+  а. Сотрудник обладающий правами админа добавляет нового пользователя в приложение (имя, email, роль); 
+  б. Добавленный сотрудник получает письмо со ссылкой для создания пароля;
+  в. После создания пароля, сотрудник получает возможность войти в приложение, введя логин - свой email и пароль;
+3. Админ имеет возможность передать свои права другому авторизованному пользователю, и у того появится доступ к странице пользователей;
+4. Для каждого вовлечённого в процесс отдела компании были созданы свои страницы и функциональные возможности;
+5. Все требования к приложению, отражённые в ТЗ, выполнены; 
 
-### `npm test`
+### Использованные инструменты
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Библиотеки:
 
-### `npm run build`
+emailj
+react-yandex-maps
+redux  
+bootstrap
+concurrently   
+formik  
+react-csv 
+uuid   
+yup
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+API:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+yandex-maps (подсказки при вводе адреса)
+yandex-maps (геокодер)
+ 
