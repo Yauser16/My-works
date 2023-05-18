@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const apiSlice = createApi({
     reducerPath: 'api',
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://delivery.teststudyweb.ru:3001' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://www.serviceserver.teststudyweb.ru:3002' }),
     tagTypes: ['Delivery', 'Deliveriesprops', 'Drivers', 'Distribution'],
     endpoints: builder => ({
         getDelivery: builder.query({

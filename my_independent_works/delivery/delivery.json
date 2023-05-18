@@ -254,7 +254,7 @@
       "name": "Михаил Якунин",
       "login": "yauser@mail.ru",
       "password": "123456",
-      "role": "dispatcher",
+      "role": "manager",
       "id": "10d691fd-8430-4145-a377-f9bb347ef989",
       "admin": false
     }

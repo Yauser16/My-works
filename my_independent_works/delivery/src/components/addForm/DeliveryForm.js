@@ -68,7 +68,7 @@ const DeliveryForm = (props) => {
                     .min(2, 'Минимум 2 символа')
                     .required('Обязательное поле!'),
                 phone: Yup.string()
-                    .matches(/^[7-8]\d{9}$/, 'номер не корректен')
+                    .matches(/^[7-8]\d{10}$/, 'номер не корректен')
                     .required('Обязательное поле!'),
                 dateOfDelivery: Yup.string()
                     .required('Обязательное поле!'),
