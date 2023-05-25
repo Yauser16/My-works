@@ -16,7 +16,7 @@ const DeliveriesPage = memo((props) => {
     const [newDriver, setNewDriver] = useState('');
     const [createDriver] = useCreateDriverMutation();
     const [deleteDriver] = useDeleteDriverMutation();
-    const { today, exportCSV } = useDeliveryServices();
+    const { today, checkDate, exportCSV } = useDeliveryServices();
 
 
     const [selectedDate, setSelectedDate] = useState(today);
@@ -81,12 +81,13 @@ const DeliveriesPage = memo((props) => {
             filteredDate.push(today());
         }
         const dates = filteredDate.map(item => {
-            if (item >= today()) {
+            if (checkDate(item)) {
                 return <option key={item} value={item}>{item}</option>
             } return null;
         });
-        return dates;
+        return dates; 
     };
+    
 
 
     const deliveryRender = (arr) => {
@@ -98,7 +99,7 @@ const DeliveriesPage = memo((props) => {
                 <li className="list-group-item d-flex justify-content-between align-items-start" key={item.id}>
                     <div className="ms-2 me-auto">
                         <div className="fw-bold">{item.date}</div>
-                        {item.name}  <span className="address" style={{"fontStyle": "italic", "marginLeft": "10px"}}>адрес: {item.address}</span>
+                        {item.name}  <span className="address" style={{ "fontStyle": "italic", "marginLeft": "10px" }}>адрес: {item.address}</span>
                     </div>
                     <button type="button" className="btn btn-link" onClick={() => { setDeliveryItem(item); }}>Детали</button>
                     <DriverSelections distrItem={item} driversNames={driversNames} distribution={distribution} />
@@ -119,7 +120,7 @@ const DeliveriesPage = memo((props) => {
         return <li key={i.id}><button className="dropdown-item" value={i.name} onClick={(e) => { deleteDriver(i.id); e.preventDefault() }} >{i.name}</button></li>
     });
 
-    const elements = deliveryRender(filteredDeliveries.filter(item => item.date >= today()));
+    const elements = deliveryRender(filteredDeliveries.filter(item => checkDate(item.date)));
 
     return (
         <>
@@ -167,7 +168,7 @@ const DeliveriesPage = memo((props) => {
                             <h4>СПИСОК ДОСТАВОК</h4>
                         </div>
                         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                            {authUsers.admin ? <Link className="btn btn-outline-primary" style={{"height": "40px", "width": "150px"}} role="button" to="/admin">Пользователи</Link> : null}
+                            {authUsers.admin ? <Link className="btn btn-outline-primary" style={{ "height": "40px", "width": "150px" }} role="button" to="/admin">Пользователи</Link> : null}
                             <div className="dropdown">
                                 <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Выгрузить в CSV

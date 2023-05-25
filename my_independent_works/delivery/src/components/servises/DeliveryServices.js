@@ -29,6 +29,16 @@ const useDeliveryServices = () => {
             return <option key={item} value={item}>{item}</option>
         })
     }
+    const checkDate = item => {
+        let dateRegex = /(\d\d).(\d\d).(\d\d\d\d)/;
+        let itemDateArr = dateRegex.exec(item);
+        let todayDateArr = dateRegex.exec(today());
+        let itemDate = new Date(itemDateArr[3], itemDateArr[2], itemDateArr[1]);
+        let todayDate = new Date(todayDateArr[3], todayDateArr[2], todayDateArr[1]);
+        if (new Date(itemDate) >= new Date(todayDate)) {
+            return true;
+        } return false;
+    }
 
     const exportCSV = (csvData, fileName, title) => {
         const headers = [
@@ -48,6 +58,7 @@ const useDeliveryServices = () => {
     return {
         today,
         selectData,
+        checkDate,
         exportCSV
     }
 
