@@ -1,0 +1,74 @@
+
+.today {
+  margin-top: 5px;
+
+}
+
+.details {
+  background-color: #f5f1bc;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.details>h3 {
+  font-weight: 700;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+
+  /* display: flex;
+    align-items: center; */
+
+}
+
+.details>div {
+  margin-bottom: 10px;
+  width: 200px;
+}
+
+.icon {
+  width: 80px;
+  height: 80px;
+}
+
+.day {
+  color: rgb(86, 86, 155);
+  font-weight: 800;
+  font-size: 1.5em;
+}
+.date {
+  font-weight: 600;
+  font-size: 1em;
+  color:rgb(94, 92, 90)
+
+}
+.temperatureDay {
+  margin-bottom: 5px;
+}
+.fallout {
+  margin-bottom: 5px;
+}
+.temperatureDay, .temperatureNight, .fallout {
+  font-weight: 600;
+  font-size: 1.15em;
+}
+.temperatureNight {
+  font-weight: 600;
+  font-size: 1em;
+  color:rgb(94, 92, 90)
+}
+.fallout {
+  font-weight: 600;
+  font-size: 1em;
+  color:rgb(94, 92, 90)
+}
+.nextDay {
+  display: flex;
+  align-items: center;
+  width: 150px;
+  
+ 
+ 
+}
+.nextDetails > div {
+  margin-bottom: 10px;
+}
