@@ -10,30 +10,31 @@
   margin-right: 2px;
 }
 
-.details>h3 {
-  font-weight: 700;
-  font-size: 1.2em;
-  margin-bottom: 10px;
+.details > img {
+  /* font-weight: 700;
+  font-size: 1.2em; */
+  margin-top: 10px;
 
   /* display: flex;
     align-items: center; */
 
 }
 
-.details>div {
+.details > div {
   margin-bottom: 10px;
   width: 200px;
 }
 
 .icon {
-  width: 80px;
+  width: 80px;  
   height: 80px;
+ margin-bottom: 0;
 }
 
 .day {
   color: rgb(86, 86, 155);
-  font-weight: 800;
-  font-size: 1.5em;
+  font-weight: 700;
+  font-size: 1.3em;
 }
 .date {
   font-weight: 600;
@@ -46,6 +47,7 @@
 }
 .fallout {
   margin-bottom: 5px;
+  height: 50px;
 }
 .temperatureDay, .temperatureNight, .fallout {
   font-weight: 600;
@@ -63,7 +65,8 @@
 }
 .nextDay {
   display: flex;
-  align-items: center;
+  padding-top: 10px;
+  align-items: top;
   width: 150px;
   
  
@@ -72,3 +75,4 @@
 .nextDetails > div {
   margin-bottom: 10px;
 }
+

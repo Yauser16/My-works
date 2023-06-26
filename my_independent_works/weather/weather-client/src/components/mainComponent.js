@@ -1,26 +1,36 @@
 
 import "./mainComponent.css";
 import YandexWeather from "./sites/yandex";
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { useHttp } from './hooks/http.hook';
 
 
 const MainComponent = () => {
-    const [state, setState] = useState();
-    const { request } = useHttp();
-   
-useEffect(() => {
-    request('http://localhost:3001/yandex')
-      .then(res => setState(res))
-      // eslint-disable-next-line
-}, []);
+  const [dataBase, setDataBase] = useState();
+  const { request, process, setProcess } = useHttp();
 
+  useEffect(() => {
+    content('http://81.90.180.43:3030/DB?secretKey=YaUseR');
+    // eslint-disable-next-line
+  }, []);
+  const content = (url) => {
+    request(url)
+      .then(res => setDataBase(res))
+      .then(setProcess('ready'))
+      .then(console.log(dataBase));
+     
+  }
 
-
-    return (
-        <main>
-            <YandexWeather state={state} />
-        </main>
-    )
+  if (process === 'waiting') {
+    return <div>Запрос отправлен</div>
+  }
+  if (process === 'loading') {
+    return <div>Загрузка данных</div>
+  }
+  return (
+    <main>
+     {dataBase ? <YandexWeather state={dataBase} /> : 'loading...'}
+    </main>)
 }
 export default MainComponent;
+

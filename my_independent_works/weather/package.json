@@ -1,31 +1,9 @@
 {
-  "name": "weather",
-  "version": "1.0.0",
-  "description": "",
-  "main": "parserYandex.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node parserYandex"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Yauser16/My-projects.git"
-  },
-  "author": "Yakunin Mikhail",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Yauser16/My-projects/issues"
-  },
-  "homepage": "https://github.com/Yauser16/My-projects#readme",
   "dependencies": {
-    "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
-    "concurrently": "^8.1.0",
-    "jsdom": "^22.0.0",
+    "json-server": "^0.17.3",
     "node-cron": "^3.0.2",
-    "osmosis": "^1.1.10",
-    "puppeteer": "^20.4.0",
-    "uniqid": "^5.4.0",
-    "uuid": "^9.0.0"
+    "puppeteer": "^20.5.0",
+    "redirect-https": "^1.3.1"
   }
 }

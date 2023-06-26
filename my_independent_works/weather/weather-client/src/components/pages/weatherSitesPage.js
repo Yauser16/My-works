@@ -4,13 +4,15 @@ import "./weatherSitesPage.css";
 import MainComponent from "../mainComponent";
 
 
+
 const WeatherSitesPage = () => {
+   
     return (
         <div className='boss'>
-            <header>
+            {/* <header>
                 <nav>
                 </nav>
-            </header>
+            </header> */}
                 <MainComponent />
         </ div>
 

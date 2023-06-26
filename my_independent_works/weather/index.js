@@ -1,9 +1,15 @@
 
+
 const cron = require('node-cron');
 const puppeteer = require('puppeteer');
+const axios = require('axios');
+
 
 const parserYandex = async () => {
-    const browser = await puppeteer.launch({ headless: false })
+    const browser = await puppeteer.launch({
+        executablePath: '/usr/bin/chromium-browser',
+        args: ['--disable-gpu', '--disable-setuid-sandbox', '--no-sandbox', '--no-zygote']
+    });
     const page = await browser.newPage()
     await page.setDefaultNavigationTimeout(0);
     await page.goto('https://yandex.ru/pogoda/?lat=55.61293411&lon=37.69527054')
@@ -11,7 +17,7 @@ const parserYandex = async () => {
 
     const arr = await page.evaluate(() => {
         const element = document.querySelector('.forecast-briefly__days')
-        const date = Array.from(element.querySelectorAll('.forecast-briefly__date'), el => el.dateTime)
+        // const date = Array.from(element.querySelectorAll('.forecast-briefly__date'), el => el.dateTime)
         const text = Array.from(element.querySelectorAll('.temp__value_with-unit'), el => el.innerText)
         const fallout = Array.from(element.querySelectorAll('.forecast-briefly__condition'), el => el.innerText)
         const uniqid = Math.random().toString(16).slice(2)
@@ -75,31 +81,32 @@ const parserYandex = async () => {
                 night: text[15],
                 fallout: fallout[7]
             },
-            next7: {
-                date: selectData()[7],
-                day: text[16],
-                night: text[17],
-                fallout: fallout[8]
-            },
             id: uniqid
         }
         return data
     })
-    let response = await fetch('http://localhost:3002/yandex', {
+    
+    // const fetch = (url) => import('node-fetch').then(({ default: fetch }) => fetch(url));
+    const response = await axios({
         method: 'POST',
+        url: 'http://81.90.180.43:3030/yandex?secretKey=YaUseR', 
+        data: JSON.stringify(arr),
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
-        body: JSON.stringify(arr)
     })
-        .then(response => console.log(response.json()))
+        .then(response => console.log(response))
+        .catch(err => console.log(err))
     await browser.close()
 }
 
 
 
 const parserPogodaMail = async () => {
-    const browser = await puppeteer.launch({ headless: false })
+    const browser = await puppeteer.launch({
+        executablePath: '/usr/bin/chromium-browser',
+        args: ['--disable-gpu', '--disable-setuid-sandbox', '--no-sandbox', '--no-zygote']
+    });
     const page = await browser.newPage()
     await page.setDefaultNavigationTimeout(0);
     await page.goto('https://pogoda.mail.ru/prognoz/moskva/')
@@ -107,7 +114,7 @@ const parserPogodaMail = async () => {
 
     const arr = await page.evaluate(() => {
         const element = document.querySelector('.days__wrapper')
-        const date = Array.from(element.querySelectorAll('.day__date'), el => el.innerText)
+        // const date = Array.from(element.querySelectorAll('.day__date'), el => el.innerText)
         const text = Array.from(element.querySelectorAll('.day__temperature'), el => el.innerText)
         const night = Array.from(element.querySelectorAll('.day__temperature__night'), el => el.textContent)
         const fallout = Array.from(element.querySelectorAll('.day__description'), el => el.title)
@@ -132,14 +139,18 @@ const parserPogodaMail = async () => {
                 let dateNext = `${day}.${month}.${year}`;
                 arrDates.push(dateNext);
             }
+            console.log(dayToday, nightToday);
             return arrDates
         }
+
+
+
         let data = {
 
             today: {
                 date: selectData()[0],
-                day: dayToday,
-                night: nightToday[1],
+                day: nightToday[1],
+                night: dayToday,
                 fallout: falloutToday[2]
             },
             next1: {
@@ -178,24 +189,22 @@ const parserPogodaMail = async () => {
                 night: night[5],
                 fallout: fallout[5]
             },
-            next7: {
-                date: selectData()[7],
-                day: text[6].split(' ')[0],
-                night: night[6],
-                fallout: fallout[6]
-            },
+
             id: uniqid
         }
         return data
     })
-    let response = await fetch('http://localhost:3002/pogodaMail', {
+    // const fetch = (url) => import('node-fetch').then(({ default: fetch }) => fetch(url));
+    let response = await axios({
         method: 'POST',
+        url: 'http://81.90.180.43:3030/pogodaMail?secretKey=YaUseR', 
+        data: JSON.stringify(arr),
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify(arr)
+        }        
     })
-        .then(response => console.log(response.json()))
+        .then(response => console.log(response))
+        .catch(err => console.log(err))
 
     await browser.close()
 }
@@ -203,7 +212,10 @@ const parserPogodaMail = async () => {
 
 
 const parserGidromet = async () => {
-    const browser = await puppeteer.launch({ headless: false })
+    const browser = await puppeteer.launch({
+        executablePath: '/usr/bin/chromium-browser',
+        args: ['--disable-gpu', '--disable-setuid-sandbox', '--no-sandbox', '--no-zygote']
+    });
     const page = await browser.newPage()
     await page.setDefaultNavigationTimeout(0);
     await page.goto('https://meteoinfo.ru/forecasts/russia/moscow-area/moscow')
@@ -271,28 +283,34 @@ const parserGidromet = async () => {
                 day: date[7].split('..')[0],
                 fallout: date[14]
             },
-           
+
             id: uniqid
         }
-        
+
         return data
     })
-    let response = await fetch('http://localhost:3002/gidromet', {
+    // const fetch = (url) => import('node-fetch').then(({ default: fetch }) => fetch(url));
+    let response = await axios({
         method: 'POST',
+        url: 'http://81.90.180.43:3030/gidromet?secretKey=YaUseR', 
+        data: JSON.stringify(arr),
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify(arr)
+        }
     })
-        .then(response => console.log(response.json()))
-        console.log(arr)
+        .then(response => console.log(response))
+        .catch(err => console.log(err))
+
     await browser.close()
 }
 
 
 
 const parserWorldWeather = async () => {
-    const browser = await puppeteer.launch({ headless: false })
+    const browser = await puppeteer.launch({
+        executablePath: '/usr/bin/chromium-browser',
+        args: ['--disable-gpu', '--disable-setuid-sandbox', '--no-sandbox', '--no-zygote']
+    });
     const page = await browser.newPage()
     await page.setDefaultNavigationTimeout(0);
     await page.goto('https://world-weather.ru/pogoda/russia/moscow/')
@@ -326,6 +344,7 @@ const parserWorldWeather = async () => {
                 fallout: fallout[0]
             },
             next1: {
+                date: selectData()[1],
                 day: day[1],
                 night: night[1],
                 fallout: fallout[1]
@@ -362,24 +381,31 @@ const parserWorldWeather = async () => {
             },
             id: uniqid
         }
-        
+
         return data
     })
-    let response = await fetch('http://localhost:3002/worldWeather', {
+    
+    let response = await axios({
         method: 'POST',
+        url: 'http://81.90.180.43:3030/worldWeather?secretKey=YaUseR', 
+        data: JSON.stringify(arr),
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
-        body: JSON.stringify(arr)
+        mode: "cors"
     })
-        .then(response => console.log(response.json()))
-        console.log(arr)
+        .then(response => console.log(response))
+        .catch(err => console.log(err))
+
     await browser.close()
 }
 
 
 const parserGisMeteo = async () => {
-    const browser = await puppeteer.launch({ headless: false })
+    const browser = await puppeteer.launch({
+        executablePath: '/usr/bin/chromium-browser',
+        args: ['--disable-gpu', '--disable-setuid-sandbox', '--no-sandbox', '--no-zygote']
+    });
     const page = await browser.newPage()
     await page.setDefaultNavigationTimeout(0);
     await page.goto('https://www.gismeteo.ru/weather-moscow-4368/10-days/')
@@ -413,6 +439,7 @@ const parserGisMeteo = async () => {
                 fallout: fallout[0]
             },
             next1: {
+                date: selectData()[1],
                 day: day[3],
                 night: day[4],
                 fallout: fallout[1]
@@ -449,21 +476,92 @@ const parserGisMeteo = async () => {
             },
             id: uniqid
         }
-        
+
         return data
     })
-    let response = await fetch('http://localhost:3002/gisMeteo', {
+    
+    let response = await axios({
         method: 'POST',
+        url: 'http://81.90.180.43:3030/gisMeteo?secretKey=YaUseR', 
+        data: JSON.stringify(arr),
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
-        body: JSON.stringify(arr)
+        mode: "cors"
     })
-        .then(response => console.log(response.json()))
-        console.log(arr)
+        .then(response => console.log(response))
+        .catch(err => console.log(err))
+    
     await browser.close()
-}
 
-// cron.schedule('0 0 3 * * *', () => {
-    parserGisMeteo(), parserWorldWeather(), parserGidromet(), parserPogodaMail(), parserYandex()
-//   });
+}
+// parserGisMeteo(), parserWorldWeather(), parserGidromet(), parserPogodaMail(), parserYandex()
+
+cron.schedule('0 0 3 * * *', () => {
+parserGisMeteo(), parserWorldWeather(), /* parserGidromet(), */ parserPogodaMail(), parserYandex()
+  });
+
+const deleteData = async () => {
+    const selectData = () => {
+        const arrDates = [];
+        const todays = new Date();
+        const date = new Date(todays.getFullYear(), todays.getMonth(), todays.getDate());
+        for (let i = 0; i < 8; i++) {
+            let d = i === 0 ? 0 : 1;
+            date.setDate(date.getDate() - d);
+            let year = date.getFullYear();
+            let month = date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
+            let day = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`;
+            // console.log(days + 23);
+            let dateNext = `${day}.${month}.${year}`;
+            arrDates.push(dateNext);
+        }
+        return arrDates
+    }
+   
+    const deleteData = (weatherSiteId) => axios(`http://81.90.180.43:3030/${weatherSiteId}?secretKey=YaUseR`, {
+        method: 'DELETE',
+        mode: "cors"
+    })
+        .then(response => console.log(response))
+        .catch(err => console.log(err))
+
+    const arrForDelete = (arr) => {
+        const arrayIds = [];
+        arr.forEach(elem => {
+            const oldData = elem[1].find(item => item.today.date === selectData()[7])
+            oldData ? arrayIds.push(`${elem[0]}/${oldData.id}`) : console.log(`${elem[0]} - there are no records as of the date: ${selectData()[7]}`)
+        }
+        )
+        return arrayIds;
+    }
+
+    const entries = obj => Object.entries(obj);
+
+    const fetch = (url) => import('node-fetch').then(({ default: fetch }) => fetch(url));
+
+    const request = async (url, method = 'GET', body = null, headers = { 'Content-Type': 'application/json' }) => {
+        try {
+            const response = await fetch(url, { method, body, headers });
+            if (!response.ok) {
+                throw new Error(`Could not farch ${url}, status: ${response.status}`);
+            }
+            const data = await response.json();
+            return data;
+        } catch (e) {
+            console.log('error');
+            throw e;
+        }
+    }
+
+    request('http://81.90.180.43:3030/DB?secretKey=YaUseR')
+        .then(request => entries(request))
+        .then(entries => arrForDelete(entries))
+        .then(arrForDelete => arrForDelete ? arrForDelete.forEach(item => deleteData(item)) : null);
+}
+// deleteData();
+cron.schedule('0 0 4 * * *', () => {
+    deleteData();
+      });
+
+console.log('the parser is running')
