@@ -34,7 +34,7 @@ const ratingWeather = async () => {
                         weatherNight.push(item.next6.night);
                         weatherFallout.push(item.next6.fallout);
                     }
-                    if (item.today.date === selectData()[0]) {
+                    if (item.today.date === selectData()[0] && weatherDay[0]) {
                         const topDay = (item.today.day.match(/[+-]\d+/) - weatherDay[0].match(/[+-]\d+/)) < 0 ? (item.today.day.match(/[+-]\d+/) - weatherDay[0].match(/[+-]\d+/)) * -1 : (item.today.day.match(/[+-]\d+/) - weatherDay[0].match(/[+-]\d+/));
                         const topNight = (item.today.night.match(/[+-]\d+/) - weatherNight[0].match(/[+-]\d+/)) < 0 ? (item.today.night.match(/[+-]\d+/) - weatherNight[0].match(/[+-]\d+/)) * -1 : (item.today.night.match(/[+-]\d+/) - weatherNight[0].match(/[+-]\d+/));
                         const topFallout = () => {
@@ -63,7 +63,7 @@ const ratingWeather = async () => {
                         }
                         axios({
                             method: 'POST',
-                            url: `http://localhost:3001/top${elem[0]}`,
+                            url: `http://81.90.180.43:3030/top${elem[0]}?secretKey=YaUseR`,
                             data: JSON.stringify(data),
                             headers: {
                                 'Content-Type': 'application/json;charset=utf-8'
@@ -96,7 +96,7 @@ const ratingWeather = async () => {
         }
     }
 
-    request('http://localhost:3001/DB')
+    request('http://81.90.180.43:3030/DB?secretKey=YaUseR')    
         .then(request => entries(request))
         .then(entries => rating(entries))
 
