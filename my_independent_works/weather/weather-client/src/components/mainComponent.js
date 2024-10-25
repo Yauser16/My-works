@@ -11,6 +11,7 @@ const MainComponent = () => {
 
   useEffect(() => {
     content('http://81.90.180.43:3030/DB?secretKey=YaUseR');
+    // 81.90.180.43:3030/DB?secretKey=YaUseR
     // eslint-disable-next-line
   }, []);
   const content = (url) => {
