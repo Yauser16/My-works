@@ -42,8 +42,8 @@ server.use(router);
 //var routes = JSON.parse(fs.readFileSync('routes.json'));
 //server.use(jsonServer.rewriter(routes));
 
-const keyFile = path.join("/etc/ssl/delivery.teststudyweb.ru_le1.crtkey");
-const certFile = path.join("/etc/ssl/delivery.teststudyweb.ru_le1.crt");
+const keyFile = path.join("/etc/ssl/delivery.teststudyweb.ru_le.crtkey");
+const certFile = path.join("/etc/ssl/delivery.teststudyweb.ru_le.crt");
 
 
 

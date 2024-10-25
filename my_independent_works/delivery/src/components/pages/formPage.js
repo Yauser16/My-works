@@ -40,8 +40,7 @@ const FormPage = (props) => {
                             filteredDeliveries={filteredDeliveries}
                             isSuccess={isSuccess}
                             isLoading={isLoading}
-                            isError={isError}
-                        />
+                            isError={isError}  />                        
                     </ul>
                 </div>
             </div>

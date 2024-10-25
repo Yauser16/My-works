@@ -28,14 +28,14 @@ server.use(jsonServer.bodyParser)
 server.use(pause(100));
 server.use(router);
 
-const keyFile = path.join("/etc/ssl/serviceserver.teststudyweb.ru_le1.crtkey");
-const certFile = path.join("/etc/ssl/serviceserver.teststudyweb.ru_le1.crt");
+const keyFile = path.join("/etc/ssl/serviceserver.teststudyweb.ru_le.crtkey");
+const certFile = path.join("/etc/ssl/serviceserver.teststudyweb.ru_le.crt");
 
 https
   .createServer(
     {
         key: fs.readFileSync(keyFile),
-        ca: fs.readFileSync("/etc/ssl/serviceserver.teststudyweb.ru_le1.cacrt"),
+        ca: fs.readFileSync("/etc/ssl/serviceserver.teststudyweb.ru_le.cacrt"),
         cert: fs.readFileSync(certFile),
     },
     server

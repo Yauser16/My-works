@@ -17,11 +17,13 @@ const EnterPage = (props) => {
     const user = auth.find(item => item.login === authVolue.login && item.password === authVolue.password);
     if (!user) {
       alert('Неверный логин или пароль');
-    }
+    return;
+    }  
       setAuthUsers({
         name: user.name,
         login: user.login,
         role: user.role,
+        place: user.place,
         admin: user.admin
 
       });
