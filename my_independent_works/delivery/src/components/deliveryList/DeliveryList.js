@@ -39,7 +39,7 @@ const DeliveryList = (props) => {
     const driverInfo = (id) => {
         const name = distribution.find(i => i.check === id);
         if (name === undefined) {
-            return "Не назначен";
+            return "Не обработано";
         } return name.driver;
     }
 
@@ -63,22 +63,26 @@ const DeliveryList = (props) => {
         let result = filteredDeliveries ? filteredDeliveries.filter(item => item.id !== target) : null
         setFilteredDeliveries(result);
     }
-
+        
     const deliveryRender = (arr) => {
         if (arr.length === 0) {
-            return <h5 className="text-center mt-5">Доставок пока нет</h5>
+            return <h5 className="text-center mt-5">Операций пока нет</h5>
         }
         return arr.map((item) => {
             return (
                 <li className="list-group-item d-flex justify-content-between align-items-center" key={item.id}>
                     <div className="ms-2 me-auto">
                         <div className="fw-bold" >{item.date}</div>
-                        <div className="fw">{item.name}</div>
+                        <div className="fw">{item.goods} - вес: <span className="badge text-bg-light">{item.weight}тн</span></div>
                         <div className="littleScreen" style={{"fontSize": "small"}}>доставляет: <span className="badge text-bg-light">{driverInfo(item.id)}</span></div>
                     </div>
-                   <div className="bigScreen" style={{"fontSize": "small"}}>доставляет: <span className="badge text-bg-light">{driverInfo(item.id)}</span></div>
+                   <div className="bigScreen" style={{"fontSize": "small"}}>операция: <span className="badge text-bg-light">{driverInfo(item.id)}</span></div>
                     <button type="button" className="btn btn-link " onClick={() => { setDeliveryItem(item); }}>Детали</button>
+<<<<<<< HEAD
                     <button type="button" id={item.id} onClick={e => setMessage({id: item.id, e: e})}   className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">удалить</button>
+=======
+                    <button type="button" id={item.id} onClick={e => setMessage({id: item.id, e: e})}   className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop"/* className="btn btn-danger " onClick={e => {onDelete(item.id); onDeleteOfFilterDeliveries(e)}} */>удалить</button>
+>>>>>>> c3abeb9b53c402797e8d638f5d6fe822cf55cae1
                 </li>
             )
         });
@@ -87,14 +91,24 @@ const DeliveryList = (props) => {
 
     return (
         <>
+<<<<<<< HEAD
             <ol className="list-group">
                 {elements}
                 <ModalMessageWarning
+=======
+            <ol className="list-group">               
+               {elements} 
+               <ModalMessageWarning
+>>>>>>> c3abeb9b53c402797e8d638f5d6fe822cf55cae1
                setMessage={setMessage}
                message={message}
                onDelete={onDelete}
                onDeleteOfFilterDeliveries={onDeleteOfFilterDeliveries}                          
+<<<<<<< HEAD
                />
+=======
+               />                  
+>>>>>>> c3abeb9b53c402797e8d638f5d6fe822cf55cae1
             </ol>
             {deliveryItem ? <ModalDeliveryPage
                 distribution={distribution}
