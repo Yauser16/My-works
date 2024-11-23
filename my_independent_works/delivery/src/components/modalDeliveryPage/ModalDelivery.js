@@ -17,22 +17,22 @@ const ModalDelivery = memo((props) => {
         return lowerCorner;
     }, [geo]);
 
-    let wid = '',
+    let lat = '',
         lon = '';
 
     if (isSuccess && lowerCorner.response.GeoObjectCollection.metaDataProperty.GeocoderResponseMetaData.found !== '0') {
-        wid = lowerCorner.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ')[1];
+        lat = lowerCorner.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ')[1];
         lon = lowerCorner.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ')[0];
     }
 
-    const yamap = (wid, lon) => {
+    const yamap = (lat, lon) => {
         if (isLoading) {
             return <h5 className="text-center mt-5">Карта загружается</h5>
         }
         if (isError) {
             return <h5 className="text-center mt-5">Ошибка загрузки карты</h5>
         }
-        if (wid === '' || lon === '') {
+        if (lat === '' || lon === '') {
             return <h5 className="text-center mt-5">Объект на карте не найден</h5>
         }
 
@@ -41,13 +41,13 @@ const ModalDelivery = memo((props) => {
                 <Map
                     width="100%"
                     defaultState={{
-                        center: [wid, lon],
+                        center: [lat, lon],
                         zoom: 12,
                         controls: ["zoomControl", "fullscreenControl"],
                     }}
                     modules={["control.ZoomControl", "control.FullscreenControl"]}
                 >
-                    <Placemark defaultGeometry={[wid, lon]} />
+                    <Placemark defaultGeometry={[lat, lon]} />
                 </Map>
             </YMaps>
         )
@@ -60,7 +60,7 @@ const ModalDelivery = memo((props) => {
             <div className="modal-dialog" style={{ "transform": "none" }}>
                 <div className="modal-content" style={{ "opacity": "1", "display": "inline-block" }}>
                     <div id="map" className="modal-header">
-                        {yamap(wid, lon)}
+                        {yamap(lat, lon)}
                     </div>
                     <div className="modal-header">
                         <h1 className="modal-title fs-5" id="exampleModalLabel">Доставка для: {deliveryItem.name}</h1>

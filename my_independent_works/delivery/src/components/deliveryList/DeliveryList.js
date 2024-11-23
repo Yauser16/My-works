@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDeleteDeliverMutation, useDeleteDistrMutation } from '../../api/apiSlice';
 import ModalDeliveryPage from '../modalDeliveryPage/ModalDeliveryPage';
+import ModalMessageWarning from '../modalDeliveryPage/ModalMessageWarning';
 import './deliveryList.css';
 
 
@@ -14,6 +15,7 @@ const DeliveryList = (props) => {
     const [deleteDistribution] = useDeleteDistrMutation();
     const [deliveryItem, setDeliveryItem] = useState(null);
     const onRefetch = () => setInterval(() => { refetch(); }, 3000);
+    const [message, setMessage] = useState(false);
 
     useEffect(() => {
         if (isSuccess) {
@@ -76,7 +78,7 @@ const DeliveryList = (props) => {
                     </div>
                    <div className="bigScreen" style={{"fontSize": "small"}}>доставляет: <span className="badge text-bg-light">{driverInfo(item.id)}</span></div>
                     <button type="button" className="btn btn-link " onClick={() => { setDeliveryItem(item); }}>Детали</button>
-                    <button type="button" id={item.id} className="btn btn-danger " onClick={e => { onDelete(item.id); onDeleteOfFilterDeliveries(e) }}>удалить</button>
+                    <button type="button" id={item.id} onClick={e => setMessage({id: item.id, e: e})}   className="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">удалить</button>
                 </li>
             )
         });
@@ -87,6 +89,12 @@ const DeliveryList = (props) => {
         <>
             <ol className="list-group">
                 {elements}
+                <ModalMessageWarning
+               setMessage={setMessage}
+               message={message}
+               onDelete={onDelete}
+               onDeleteOfFilterDeliveries={onDeleteOfFilterDeliveries}                          
+               />
             </ol>
             {deliveryItem ? <ModalDeliveryPage
                 distribution={distribution}

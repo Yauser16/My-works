@@ -3,16 +3,16 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const authSlice = createApi({
     reducerPath: 'auth',
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://www.serviceserver.teststudyweb.ru:3002' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
     tagTypes: ['Authorization'],
     endpoints: builder => ({
         getAuth: builder.query({
-            query: () => '/auth?secretKey=YaUseR',
+            query: () => '/auth',
             providesTags: ['Authorization']
         }),
         createAuth: builder.mutation({
             query: auth => ({
-                url: '/auth?secretKey=YaUseR',
+                url: '/auth',
                 method: "POST",
                 body: auth
             }),
@@ -20,7 +20,7 @@ export const authSlice = createApi({
         }),
         deleteAuth: builder.mutation({
             query: id => ({
-                url: `/auth/${id}?secretKey=YaUseR`,
+                url: `/auth/${id}`,
                 method: 'DELETE'
             }),
             invalidatesTags: ['Authorization']

@@ -20,7 +20,7 @@ const MainComponent = () => {
       .then(setProcess('ready'))
       .then(console.log(dataBase));
      
-  }
+  }  
 
   if (process === 'waiting') {
     return <div>Запрос отправлен</div>
@@ -29,7 +29,7 @@ const MainComponent = () => {
     return <div>Загрузка данных</div>
   }
   return (
-    <main>
+    <main style={!dataBase || dataBase.yandex.length === 0 ? {"border" : "none"} : {"border" : "1px solid black"}}>
      {dataBase ? <YandexWeather state={dataBase} /> : 'loading...'}
     </main>)
 }

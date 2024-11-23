@@ -3,28 +3,28 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const apiSlice = createApi({
     reducerPath: 'api',
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://www.serviceserver.teststudyweb.ru:3002' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
     tagTypes: ['Delivery', 'Deliveriesprops', 'Drivers', 'Distribution'],
     endpoints: builder => ({
         getDelivery: builder.query({
-            query: () => '/delivery?secretKey=YaUseR',
+            query: () => '/delivery',
             providesTags: ['Delivery']
         }),
         getDistr: builder.query({
-            query: () => '/distrdeliveries?secretKey=YaUseR',
+            query: () => '/distrdeliveries',
             providesTags: ['Distribution']
         }),
         getProps: builder.query({
-            query: () => '/deliveriesprops?secretKey=YaUseR',
+            query: () => '/deliveriesprops',
             providesTags: ['Deliveriesprops']
         }),
         getDriver: builder.query({
-            query: () => '/drivers?secretKey=YaUseR',
+            query: () => '/drivers',
             providesTags: ['Drivers']
         }),
         createDeliver: builder.mutation({
             query: deliver => ({
-                url: '/delivery?secretKey=YaUseR',
+                url: '/delivery',
                 method: "POST",
                 body: deliver
             }),
@@ -32,7 +32,7 @@ export const apiSlice = createApi({
         }),
         createDriver: builder.mutation({
             query: driver => ({
-                url: '/drivers?secretKey=YaUseR',
+                url: '/drivers',
                 method: "POST",
                 body: driver
             }),
@@ -40,7 +40,7 @@ export const apiSlice = createApi({
         }),
         createDistr: builder.mutation({
             query: distrdelivery => ({
-                url: '/distrdeliveries?secretKey=YaUseR',
+                url: '/distrdeliveries',
                 method: "POST",
                 body: distrdelivery
             }),
@@ -48,21 +48,21 @@ export const apiSlice = createApi({
         }),
         deleteDeliver: builder.mutation({
             query: id => ({
-                url: `/delivery/${id}?secretKey=YaUseR`,
+                url: `/delivery/${id}`,
                 method: 'DELETE'
             }),
             invalidatesTags: ['Delivery']
         }),
         deleteDistr: builder.mutation({
             query: id => ({
-                url: `/distrdeliveries/${id}?secretKey=YaUseR`,
+                url: `/distrdeliveries/${id}`,
                 method: 'DELETE'
             }),
             invalidatesTags: ['Distribution']
         }),
         deleteDriver: builder.mutation({
             query: id => ({
-                url: `/drivers/${id}?secretKey=YaUseR`,
+                url: `/drivers/${id}`,
                 method: 'DELETE'
             }),
             invalidatesTags:  ['Drivers']

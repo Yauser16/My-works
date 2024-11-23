@@ -22,7 +22,7 @@ const DeliveryForm = (props) => {
         const script = document.createElement('script');
         const body = document.querySelector('body');
         script.async = false;
-        script.textContent = " ymaps.ready(init); function init(){ const suggestView = new ymaps.SuggestView('suggest')}";
+        script.textContent = "ymaps.ready(init); function init(){ const suggestView = new ymaps.SuggestView('suggest')}";
         body.appendChild(script);
 
         return () => body.removeChild(script);
