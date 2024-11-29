@@ -1,0 +1,311 @@
+{
+  "delivery": [
+    {
+      "place": "lubertsy",
+      "operation": "inTo",
+      "name": "ЗАО \"РЕЛОД\"",
+      "contactName": "Т123ИИ77",
+      "phone": "89165554455",
+      "date": "30.03.2024",
+      "goods": "ТАФ-7Ж",
+      "weight": "14",
+      "items": "12",
+      "documents": "16:00 - 17:00",
+      "description": "В металлических бочках на паллетах",
+      "sender": "Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил, изменил: Михаил",
+      "id": "9a9d82fb-b6d4-4414-9153-1df76ecd55dc"
+    },
+    {
+      "place": "lubertsy",
+      "operation": "inTo",
+      "name": "Wuhan",
+      "contactName": "М123МР177",
+      "phone": "89455699898",
+      "date": "28.03.2024",
+      "goods": "Пятисернистый фосфор",
+      "weight": "13",
+      "items": "",
+      "documents": "после 13.00",
+      "description": "",
+      "sender": "Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил, изменил: Михаил, изменил: Михаил, изменил: Михаил, изменил: Михаил, изменил: Михаил, изменил: Админ",
+      "id": "a7f0ebb5-6a29-45d9-bd34-a8e2ed0cda20"
+    },
+    {
+      "place": "tambov",
+      "operation": "out",
+      "name": "ООО \"НПЗ\"",
+      "contactName": "Т456ОО177",
+      "phone": "89166755889",
+      "date": "28.03.2024",
+      "goods": "масло 10w40",
+      "weight": "17",
+      "items": "12",
+      "documents": "",
+      "description": "",
+      "sender": "Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил, изменил: Админ",
+      "id": "8dceb4b1-f130-4c88-9f66-30741e06aed1"
+    },
+    {
+      "place": "tambov",
+      "operation": "out",
+      "name": "ООО \"Заря\"",
+      "contactName": "М147ТМ177",
+      "phone": "89454567889",
+      "date": "28.03.2024",
+      "goods": "Масло",
+      "weight": "20>",
+      "items": "22",
+      "documents": "12,00",
+      "description": "",
+      "sender": "Михаил, изменил: Админ, изменил: Админ",
+      "id": "655ad23a-4803-478d-908e-bd3177226c9b"
+    },
+    {
+      "place": "tambov",
+      "operation": "inTo",
+      "name": "Зао \"Релод\"",
+      "contactName": "m123mm77",
+      "phone": "79166735135",
+      "date": "28.03.2024",
+      "goods": "Фосфор",
+      "weight": "17",
+      "items": "13",
+      "documents": "",
+      "description": "",
+      "sender": "Михаил Якунин, изменил: Админ, изменил: Админ",
+      "id": "cfddbf30-5800-4c69-bd98-2b0f32089fec"
+    },
+    {
+      "place": "tambov",
+      "operation": "inTo",
+      "name": "Зао \"Релод\"",
+      "contactName": "m123mm77",
+      "phone": "79166735135",
+      "date": "28.03.2024",
+      "goods": "Фосфор",
+      "weight": "17",
+      "items": "13",
+      "documents": "",
+      "description": "",
+      "sender": "Михаил Якунин, изменил: Админ, изменил: Админ",
+      "id": "b848f182-7c56-4753-abf4-0b1a7812a85e"
+    },
+    {
+      "place": "lubertsy",
+      "operation": "inTo",
+      "name": "OZCHINAR",
+      "contactName": "M 123 KU 123",
+      "phone": "80156667788",
+      "date": "28.03.2024",
+      "goods": "NS3",
+      "weight": "20",
+      "items": "1",
+      "documents": "после обеда",
+      "description": "Танк контейнер",
+      "sender": "Админ, изменил: Админ",
+      "id": "1c232f42-9428-422e-aac4-39a4e65a0dc0"
+    },
+    {
+      "place": "tambov",
+      "operation": "inTo",
+      "name": "Wuhan",
+      "contactName": "А 123 АА 123",
+      "phone": "79166546565",
+      "date": "28.03.2024",
+      "goods": "Пятисернистый фосфор",
+      "weight": "16",
+      "items": "18",
+      "documents": "после обеда",
+      "description": "",
+      "sender": "Админ, изменил: Админ, изменил: Админ",
+      "id": "074182eb-fb3c-44b5-9a8c-1032e4b1e43a"
+    },
+    {
+      "place": "tambov",
+      "operation": "inTo",
+      "name": "Зао \"Релод\"",
+      "contactName": "ggggggg",
+      "phone": "89998889999",
+      "date": "28.03.2024",
+      "goods": "масло 10w40",
+      "weight": "19",
+      "items": "23",
+      "documents": "после обеда",
+      "description": "",
+      "sender": "Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил Якунин, изменил: Михаил, изменил: Админ, изменил: Админ",
+      "id": "65e8ec97-11e1-44d1-b954-a58abc54608d"
+    },
+    {
+      "place": "tambov",
+      "operation": "inTo",
+      "name": "Зао \"Релод\"",
+      "contactName": "m123mm77",
+      "phone": "79166735135",
+      "date": "28.03.2024",
+      "goods": "Фосфор",
+      "weight": "17",
+      "items": "13",
+      "documents": "",
+      "description": "",
+      "sender": "Михаил Якунин, изменил: Админ, изменил: Админ, изменил: Админ",
+      "id": "4ba03c1a-9cae-4902-bcfa-d4ecd9740fb4"
+    },
+    {
+      "place": "tambov",
+      "operation": "inTo",
+      "name": "Зао \"Релод\"",
+      "contactName": "m123mm77",
+      "phone": "79166735135",
+      "date": "28.03.2024",
+      "goods": "Фосфор",
+      "weight": "17",
+      "items": "13",
+      "documents": "",
+      "description": "",
+      "sender": "Михаил Якунин, изменил: Админ, изменил: Админ, изменил: Админ",
+      "id": "a5aca5c8-4d02-4566-ba87-07d15d35abd6"
+    }
+  ],
+  "deliveriesprops": [
+    {
+      "id": "1",
+      "name": "place",
+      "label": "Площадка"
+    },
+    {
+      "id": "2",
+      "name": "operation",
+      "label": "Операция"
+    },
+    {
+      "id": "3",
+      "name": "contactName",
+      "label": "Номер машины"
+    },
+    {
+      "id": "4",
+      "name": "phone",
+      "label": "Телефон водителя"
+    },
+    {
+      "id": "6",
+      "name": "date",
+      "label": "Дата операции"
+    },
+    {
+      "id": "7",
+      "name": "goods",
+      "label": "Груз"
+    },
+    {
+      "id": "8",
+      "name": "description",
+      "label": "Детали"
+    },
+    {
+      "id": "9",
+      "name": "sender",
+      "label": "Оформил"
+    }
+  ],
+  "drivers": [
+    {
+      "name": "завершено",
+      "id": "fa68345d-844b-4729-b4fb-46ea031e0d5c"
+    },
+    {
+      "name": "отменено",
+      "id": "567b32e5-71b2-4683-b3e0-ef2163a4ac8a"
+    }
+  ],
+  "distrdeliveries": [
+    {
+      "place": "lubertsy",
+      "operation": "inTo",
+      "name": "ЗАО \"РЕЛОД\"",
+      "contactName": "Т123ИИ77",
+      "phone": "89165554455",
+      "weight": "14",
+      "items": "12",
+      "description": "В металлических бочках на паллетах",
+      "sender": "ЗАО \"РЕЛОД\"",
+      "driver": "отменено",
+      "check": "9a9d82fb-b6d4-4414-9153-1df76ecd55dc",
+      "id": "8055e565-a8f6-4080-8757-c819a6a15ec6"
+    },
+    {
+      "place": "tambov",
+      "operation": "inTo",
+      "name": "Зао \"Релод\"",
+      "contactName": "m123mm77",
+      "phone": "79166735135",
+      "weight": "17",
+      "items": "13",
+      "description": "",
+      "sender": "Зао \"Релод\"",
+      "driver": "завершено",
+      "check": "b848f182-7c56-4753-abf4-0b1a7812a85e",
+      "id": "7d23e05a-5221-44b4-8b13-81e0b92cc043"
+    },
+    {
+      "place": "lubertsy",
+      "operation": "inTo",
+      "name": "Wuhan",
+      "contactName": "М123МР177",
+      "phone": "89455699898",
+      "weight": "13",
+      "items": "",
+      "description": "",
+      "sender": "Wuhan",
+      "driver": "завершено",
+      "check": "a7f0ebb5-6a29-45d9-bd34-a8e2ed0cda20",
+      "id": "4499eb42-893e-4549-8b32-9dc6e26b7ee7"
+    }
+  ],
+  "auth": [
+    {
+      "name": "Админ",
+      "login": "admin@mail.ru",
+      "password": "123456",
+      "role": "manager",
+      "id": "3b3892c6-1c2f-44a0-94d7-f1d42d967422",
+      "admin": true
+    },
+    {
+      "name": "Логист Тамбов",
+      "login": "tambovlogist@mail.ru",
+      "password": "123456",
+      "role": "dt",
+      "place": "tambov",
+      "id": "1e0cd48e-0ade-40ec-a18f-ccf6149d4b2a",
+      "admin": false
+    },
+    {
+      "name": "Охрана Тамбов",
+      "login": "tambovcontrol@mail.ru",
+      "password": "123456",
+      "role": "ct",
+      "place": "tambov",
+      "id": "05e6fa37-4c86-4f67-b338-1caf64669f6f",
+      "admin": false
+    },
+    {
+      "name": "Логист Люберцы",
+      "login": "lubertsylogist@mail.ru",
+      "password": "123456",
+      "role": "dl",
+      "place": "lubertsy",
+      "id": "e9d89db0-b3d3-436d-a803-7d6c65fc3028",
+      "admin": false
+    },
+    {
+      "name": "Охрана Люберцы",
+      "login": "lubertsycontrol@mail.ru",
+      "password": "123456",
+      "role": "cl",
+      "place": "lubertsy",
+      "id": "b0964cdf-a3ef-4ffc-afbd-6cd6c95ad59a",
+      "admin": false
+    }
+  ]
+}

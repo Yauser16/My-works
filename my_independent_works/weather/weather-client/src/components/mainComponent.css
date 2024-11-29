@@ -1,0 +1,7 @@
+main {
+    margin: 30px auto 20px auto;
+    width: max-content;
+    min-height: 310px;    
+    /* font-family: 'Merienda', cursive; */
+    font-family: 'Ubuntu', sans-serif;
+}
