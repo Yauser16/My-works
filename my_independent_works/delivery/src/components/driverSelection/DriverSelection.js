@@ -1,11 +1,11 @@
 
-import React, { useState, memo } from "react";
+import React, { useState,  memo } from "react";
 import { useCreateDistrMutation, useDeleteDistrMutation } from "../../api/apiSlice";
 import { v4 as uuidv4 } from 'uuid';
 
 const DriverSelections = memo((props) => {
 
-    const [driver, setDriver] = useState('Не обработано');
+    const [driver, setDriver] = useState('Водитель не выбран');
     const { driversNames, distrItem, distribution } = props;
     const [createDistribution] = useCreateDistrMutation();
     const [deleteDistribution] = useDeleteDistrMutation();
@@ -21,18 +21,15 @@ const DriverSelections = memo((props) => {
     });
     const addNewDistribution = (arrDistr, e) => {
         const newDistr = {
-            place: arrDistr.place,
-            operation: arrDistr.operation,
             name: arrDistr.name,
             contactName: arrDistr.contactName,
             phone: arrDistr.phone,
-            date: arrDistr.dateOfDelivery,
-            goods: arrDistr.titleOfGoods,
-            weight: arrDistr.weight,
-            items: arrDistr.items,
-            documents: arrDistr.documentNumbers,
+            address: arrDistr.address,
+            place: arrDistr.place,
+            date: arrDistr.date,
+            documents: arrDistr.documents,
             description: arrDistr.description,
-            sender: arrDistr.name,
+            sender: arrDistr.sender,
             driver: e.target.value,
             check: arrDistr.id,
             id: uuidv4()
@@ -43,15 +40,15 @@ const DriverSelections = memo((props) => {
         createDistribution(newDistr).unwrap();
         setDriver(newDistr);
     };
-
-    /* const cancelDriver = () => {
+    
+    const cancelDriver = () => {
 
         if (driver.id) {
             deleteDistribution(driver.id);
-            setDriver('Отмена');
-            setTimeout(() => setDriver('Отмена'), 2000);
-        }
-    }; */
+            setDriver('Водитель отменён'); 
+            setTimeout(() => setDriver('Водитель отменён'), 2000);
+        } 
+    };
     const stateItem = () => {
         if (distribution) {
             distribution.forEach(objItem => {
@@ -69,10 +66,10 @@ const DriverSelections = memo((props) => {
         <>
             <div className="dropdown">
                 <button className="btn btn-Light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Статус
+                    Выбор водителя
                 </button>
                 <ul className="dropdown-menu">
-                    {/*  <li><button className="dropdown-item" onClick={() => cancelDriver()}>Отмена</button></li> */}
+                    <li><button className="dropdown-item" onClick={() => cancelDriver()}>Водитель отменён</button></li>
                     {driversList(distrItem)}
                 </ul>
             </div>

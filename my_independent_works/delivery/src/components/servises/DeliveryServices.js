@@ -1,16 +1,18 @@
-
 import { CSVLink } from "react-csv";
 
 const useDeliveryServices = () => {
 
-    const today = () => {
+    /* const today = () => {
         let date = new Date();
         let year = date.getFullYear();
         let month = date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
         let day = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`;
         return `${day}.${month}.${year}`;
-    };
+    }; */
 
+    const today = () => new Intl.DateTimeFormat('ru', {dateStyle: 'short'}).format(new Date());
+
+    
     const selectData = () => {
         const arrDates = [];
         let todays = new Date();
@@ -30,19 +32,6 @@ const useDeliveryServices = () => {
         })
     }
 
-    const selectWeight = () => {
-        const arr = [];
-        let i = 0;
-        for (let e = 1; e <= 20; e++) {
-            i = +e;
-            arr.push(i);
-        }
-
-        return arr.map(item => {
-            return <option key={item} value={item}>{item}</option>
-        })
-    }
-
     const checkDate = item => {
         let dateRegex = /(\d\d).(\d\d).(\d\d\d\d)/;
         let itemDateArr = dateRegex.exec(item);
@@ -54,30 +43,37 @@ const useDeliveryServices = () => {
         } return false;
     }
 
+    function sortDate(array) {
+        return array.sort((a, b) => new Date(a.date) - new Date(b.date))
+    };
+
+    const compNum = (a, b) => new Date(a.date) - new Date(b.date);
+        /* if(a > b) return 1;
+        if(a === b) return 0;
+        if(a < b) return -1 */
+    
+
     const exportCSV = (csvData, fileName, title) => {
         const headers = [
-            { label: "Площадка", key: "place" },
-            { label: "Операция", key: "operation" },
-            { label: "Контрагент", key: "name" },
-            { label: "Номер машины", key: "contactName" },
-            { label: "Телефон водителя", key: "phone" },
+            { label: "Клиент", key: "name" },
+            { label: "Контактное лицо", key: "contactName" },
+            { label: "Телефон контактного лица", key: "phone" },
+            { label: "Адрес доставки", key: "address" },
             { label: "Дата доставки", key: "date" },
-            { label: "Груз", key: "goods" },
-            { label: "Вес", key: "weight" },
-            { label: "Количество мест", key: "items" },
-            { label: "Время операции", key: "documents" },
+            { label: "Документы", key: "documents" },
             { label: "Детали", key: "description" },
-            { label: "Заявитель", key: "sender" },
-            { label: "Статус", key: "driver" }
+            { label: "Отправитель", key: "sender" },
+            { label: "Водитель", key: "driver" }
         ];
         return <CSVLink className="dropdown-item" role="button" data={csvData} headers={headers} separator={"\t"} filename={fileName}>{title}</CSVLink>
     };
 
     return {
         today,
-        selectData,
-        selectWeight,
+        selectData,       
         checkDate,
+        compNum,
+        sortDate,
         exportCSV
     }
 

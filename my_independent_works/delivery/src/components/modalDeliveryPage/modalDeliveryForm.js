@@ -7,19 +7,15 @@ import useDeliveryServices from '../servises/DeliveryServices';
 
 const ModalDeliveryForm = memo((props) => {
     const { deliveryItem, setDeliveryItem, createDeliver, onDelete, onDeleteDistribution, setState, display, authUsers } = props;
-    const { selectData, selectWeight } = useDeliveryServices();
+    const { selectData } = useDeliveryServices();
 
     const postDelivery = (values) => {
         const newDelivery = {
-            place: values.place,
-            operation: values.operation,
             name: values.name,
             contactName: values.contactName,
             phone: values.phone,
+            address: values.address,
             date: values.dateOfDelivery,
-            goods: values.goods,
-            weight: values.weight,
-            items: values.items,
             documents: values.documentNumbers,
             description: values.description,
             sender: `${deliveryItem.sender}, изменил: ${authUsers.name}`,
@@ -34,24 +30,16 @@ const ModalDeliveryForm = memo((props) => {
     return (
         <Formik
             initialValues={{
-                place: `${deliveryItem.place}`,
-                operation: `${deliveryItem.operation}`,
                 name: `${deliveryItem.name}`,
                 contactName: `${deliveryItem.contactName}`,
                 phone: `${deliveryItem.phone}`,
+                address: `${deliveryItem.address}`,
                 dateOfDelivery: `${deliveryItem.date}`,
-                goods: `${deliveryItem.goods}`,
-                weight: `${deliveryItem.weight}`,
-                items: `${deliveryItem.items}`,
                 documentNumbers: `${deliveryItem.documents}`,
                 description: `${deliveryItem.description}`
             }}
 
             validationSchema={Yup.object({
-                place: Yup.string()
-                    .required('Обязательное поле!'),
-                operation: Yup.string()
-                    .required('Обязательное поле!'),
                 name: Yup.string()
                     .min(2, 'Минимум 2 символа')
                     .required('Обязательное поле!'),
@@ -61,12 +49,10 @@ const ModalDeliveryForm = memo((props) => {
                 phone: Yup.string()
                     .matches(/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/, 'номер не корректен')
                     .required('Обязательное поле!'),
+                address: Yup.string()
+                    .min(2, 'Минимум 2 символа')
+                    .required('Обязательное поле!'),
                 dateOfDelivery: Yup.string()
-                    .required('Обязательное поле!'),
-                goods: Yup.string()
-                    .max(25, 'Максимум 25 знаков')
-                    .required('Обязательное поле!'),
-                weight: Yup.string()
                     .required('Обязательное поле!'),
                 documentNumbers: Yup.string()
                     .min(2, 'Минимум 2 символа'),
@@ -86,36 +72,7 @@ const ModalDeliveryForm = memo((props) => {
                             <Form>
                                 <div className="modal-body" style={{ "wordWrap": "break-word" }}>
                                     <div className="form-group">
-                                        <label htmlFor="place">Площадка</label>
-                                        <Field
-                                            as="select"
-                                            style={{ "fontWeight": 700 }}
-                                            name="place"
-                                            className="form-control"
-                                            type="text">
-                                            <option value="">Выберите площадку</option>
-                                            <option key={"1"} value="tambov">Тамбов</option>
-                                            <option key={"2"} value="lubertsy">Люберцы</option>
-                                        </Field>
-                                        <ErrorMessage className="error" name="place" component="div" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="operation">Операция</label>
-                                        <Field
-                                            as="select"
-                                            style={{ "fontWeight": 700 }}
-                                            name="operation"
-                                            id="operation"
-                                            className="form-control"
-                                            type="text">
-                                            <option value="">Выберите действие</option>
-                                            <option key={"1"} value="inTo">Поступление</option>
-                                            <option key={"2"} value="out">Отгрузка</option>
-                                        </Field>
-                                        <ErrorMessage className="error" name="operation" component="div" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="name">Контрагент</label>
+                                        <label htmlFor="name">Получатель</label>
                                         <Field
                                             style={{ "fontWeight": 700 }}
                                             name="name"
@@ -125,7 +82,7 @@ const ModalDeliveryForm = memo((props) => {
                                         <ErrorMessage className="error" name="name" component="div" />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="contactName">Номер транспортного срества</label>
+                                        <label htmlFor="contactName">Контактное лицо получателя</label>
                                         <Field
                                             name="contactName"
                                             id="contactName"
@@ -134,13 +91,23 @@ const ModalDeliveryForm = memo((props) => {
                                         <ErrorMessage className='error' name="contactName" component='div' />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="phone">Телефон водителя</label>
+                                        <label htmlFor="phone">Телефон контактного лица</label>
                                         <Field
                                             name="phone"
                                             id="phone"
                                             className="form-control"
                                             type="text" />
                                         <ErrorMessage className='error' name="phone" component='div' />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="address">Адрес доставки</label>
+                                        <Field
+                                            name="address"
+                                            id="address"
+                                            className="form-control"
+                                            type="text"
+                                        />
+                                        {<ErrorMessage className='error' name="address" component='div' />}
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="dateOfDelivery">Дата доставки</label>
@@ -155,38 +122,7 @@ const ModalDeliveryForm = memo((props) => {
                                         <ErrorMessage className='error' name="dateOfDelivery" component='div' />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="goods">Описание груза</label>
-                                        <Field
-                                            name="goods"
-                                            id="goods"
-                                            className="form-control"
-                                            type="text" />
-                                        <ErrorMessage className='error' name="goods" component='div' />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="weight">Вес</label>
-                                        <Field
-                                            as="select"
-                                            name="weight"
-                                            className="form-control"
-                                            type="text">
-                                            <option value=">1">менее 1</option>
-                                            {selectWeight()}
-                                            <option value="20>">более 20</option>
-                                        </Field>
-                                        <ErrorMessage className='error' name="weight" component='div' />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="items">Количество мест</label>
-                                        <Field
-                                            name="items"
-                                            id="items"
-                                            className="form-control"
-                                            type="text" />
-                                        <ErrorMessage className='error' name="items" component='div' />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="documentNumbers">Время операции</label>
+                                        <label htmlFor="documentNumbers">Документы</label>
                                         <Field
                                             name="documentNumbers"
                                             id="documentNumbers"
@@ -195,7 +131,7 @@ const ModalDeliveryForm = memo((props) => {
                                         <ErrorMessage className='error' name="documentNumbers" component='div' />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="description">Детали операциии</label>
+                                        <label htmlFor="description">Детали доставки</label>
                                         <Field
                                             name="description"
                                             id="description"

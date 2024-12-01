@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { memo } from 'react';
-=======
 import React, { memo } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
->>>>>>> c3abeb9b53c402797e8d638f5d6fe822cf55cae1
 
 const ModalMessageWarning = memo((props) => {  
   const {message, setMessage, onDelete, onDeleteOfFilterDeliveries} = props;
